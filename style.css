@@ -126,14 +126,20 @@ img.profile {
   background: #f8f8f8;
   padding: 1.5rem;
   border: 1px solid #ddd;
+  text-align: center; /* video ko center karne ke liye */
 }
+
+/* 🔥 YEH RAHA FIX: Vertical (9:16) videos ke liye */
 .video-item video {
-  width: 100%;
-  height: auto;
-  background: #000;
   display: block;
-  margin-bottom: 1rem;
+  max-width: 100%;
+  max-height: 70vh;  /* Screen height ka 70% - poori video dikhegi */
+  height: auto;
+  width: auto;       /* Width automatically adjust hogi ratio ke hisaab se */
+  margin: 0 auto 1rem auto;
+  background: #000;
 }
+
 .video-item h4 {
   margin-bottom: 0.2rem;
 }
@@ -147,4 +153,7 @@ img.profile {
   h2 { font-size: 2rem; }
   nav { gap: 0.8rem 1.5rem; font-size: 1rem; }
   .highlight-box { padding: 1rem; }
+  .video-item video {
+    max-height: 50vh; /* Mobile par aur chhoti karo */
+  }
 }
