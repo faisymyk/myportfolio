@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Experience | Muhammad Faisal Khan</title>
+    <meta property="og:title" content="My Work Experience — AI Video Projects">
+    <meta property="og:description" content="AI ad campaigns, editing, and creative projects for brands.">
+    <meta property="og:image" content="https://faisymyk.github.io/myportfolio/images/preview.jpg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Barlow',sans-serif; font-weight:100; font-size:18px; color:#000; background:#fff; padding:20px; max-width:1100px; margin:0 auto; }
+        h1,h2,h3,.logo { font-family:'Archivo',sans-serif; font-weight:700; font-style:italic; }
+        nav { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:1.5rem 0; border-bottom:1px solid #000; margin-bottom:2rem; }
+        .logo { font-size:1.8rem; color:#000; text-decoration:none; }
+        .nav-links { display:flex; gap:2rem; list-style:none; }
+        .nav-links a { text-decoration:none; color:#000; font-weight:400; font-size:1rem; padding-bottom:4px; border-bottom:2px solid transparent; }
+        .nav-links a:hover, .nav-links a.active { border-bottom-color:#000; font-weight:700; }
+        footer { margin-top:4rem; padding-top:2rem; border-top:1px solid #000; text-align:center; font-size:0.9rem; font-weight:300; }
+        .project { margin-bottom:3rem; border-bottom:1px dashed #000; padding-bottom:2rem; }
+        .project iframe { width:100%; max-width:400px; height:auto; aspect-ratio:9/16; display:block; margin:1rem auto; border:1px solid #000; }
+        .spec-section { margin-top:4rem; border-top:2px solid #000; padding-top:2rem; }
+        @media(max-width:600px){ body{font-size:16px;} }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">MF.</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="expertise.html">Expertise</a></li>
+            <li><a href="experience.html" class="active">Work</a></li>
+            <li><a href="portfolio.html">Videos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <h2>My Work Experience</h2>
+    <p>A summary of the projects and platforms I've worked with, combining AI‑driven ad campaigns with independent content creation.</p>
+
+    <!-- Project 1: Horror Channel (no video provided yet) -->
+    <div class="project">
+        <h3>Horror Storytelling Channel</h3>
+        <p>Built and manage an Urdu‑language YouTube channel using AI‑generated scenes with a character consistency system across multi‑scene stories.</p>
+        <!-- Placeholder for video/thumbnail -->
+        <!-- <iframe src="DRIVE_ID/preview" allowfullscreen></iframe> -->
+    </div>
+
+    <!-- Project 2: UCG Boutique -->
+    <div class="project">
+        <h3>UCG Boutique</h3>
+        <p>Created Instagram promotional reels using AI‑generated visuals, Urdu dialogue, and clear calls‑to‑action.</p>
+        <iframe src="https://drive.google.com/file/d/1XsmHja0G9M9LBOtP04QVS_QGQ1FUDe14/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+    </div>
+
+    <!-- Project 3: YouTube Channel Editing -->
+    <div class="project">
+        <h3>YouTube Channel Editing</h3>
+        <p>Edited a full range of YouTube videos for an independent content creator, including chroma key compositing, audio cleanup and mixing, subtitles/captions, on‑screen subscribe button overlays, and custom thumbnail design — primarily using Filmora.</p>
+        <!-- Thumbnail image if available -->
+    </div>
+
+    <!-- Project 4: Additional Editing Experience -->
+    <div class="project">
+        <h3>Additional Editing Experience</h3>
+        <p>Beyond AI‑driven production, I also handle full manual video editing — proof that the AI work is backed by real editing fundamentals, not a dependency on automated tools.</p>
+    </div>
+
+    <!-- Project 5: Eureka Academy -->
+    <div class="project">
+        <h3>Eureka Digital Marketing Academy</h3>
+        <p>Produced a video marketing campaign for their Digital Marketing Certification program — combining AI‑generated visuals with hands‑on editing, voiceover integration, and a hybrid production format.</p>
+        <iframe src="https://drive.google.com/file/d/1zM4GOplNVjwrjTiL1pjJJgOqRTJAqAgu/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+    </div>
+
+    <!-- Project 6: Eureka Mug -->
+    <div class="project">
+        <h3>Eureka Mug (USA)</h3>
+        <p>Produced a promotional campaign for this smart, temperature‑display mug brand, combining AI‑generated visuals with hands‑on video editing, voiceover direction, and keyframe‑based motion work.</p>
+        <iframe src="https://drive.google.com/file/d/1snnyZPGiIItJXpftikmZb4Fodq-iV3m_/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+    </div>
+
+    <!-- SPEC SECTION -->
+    <div class="spec-section">
+        <h2>Practice / Speculative Work</h2>
+        <p style="font-style:italic;">These are unpaid, self‑initiated concept ads — not paid client work — created to practice and demonstrate range.</p>
+
+        <div class="project">
+            <h3>Pediasure (spec ad)</h3>
+            <iframe src="https://drive.google.com/file/d/1FL9r0bDm_ucVvpAEPTzpnP5_E3aPMStU/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="project">
+            <h3>Vaseline (spec ad)</h3>
+            <iframe src="https://drive.google.com/file/d/1HpPwQMP4RrerBCDMLMA_0_SVhhs_oCb0/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <footer>
+        Presented by: Muhammad Faisal Khan | Phone: +92-309-9225353 | Email: faisymyk@gmail.com
+    </footer>
+</body>
+</html>
