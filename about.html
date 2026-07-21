@@ -11,53 +11,102 @@
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            font-family:'Barlow',sans-serif; font-weight:100; font-size:18px;
-            color:#000; background:#fff; padding:20px;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 100; font-size: 18px;
+            color: #000; background: #fff;
+            padding: 20px;
         }
-        .page-wrap { max-width:1200px; margin:0 auto; }
+        .page-wrap { max-width: 1200px; margin: 0 auto; }
+
         nav {
-            display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;
-            padding:1.5rem 0; border-bottom:1px solid #000; margin-bottom:2rem;
+            display: flex; flex-wrap: wrap;
+            justify-content: flex-end;   /* Links right side karega, left empty */
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #000;
+            margin-bottom: 2rem;
         }
-        .logo { font-family:'Archivo',sans-serif; font-weight:700; font-style:italic; font-size:1.8rem; color:#000; text-decoration:none; }
-        .nav-links { display:flex; gap:2.5rem; list-style:none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-links a {
-            text-decoration:none; color:#000; font-weight:400; font-size:0.95rem;
-            letter-spacing:0.7px; text-transform:uppercase; padding-bottom:6px;
-            border-bottom:2px solid transparent; transition:0.2s;
+            text-decoration: none; color: #000; font-weight: 400;
+            font-size: 0.95rem; letter-spacing: 0.7px;
+            text-transform: uppercase;
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
         }
-        .nav-links a:hover, .nav-links a.active { border-bottom:2px solid #000; font-weight:600; }
-        h1,h2,h3 { font-family:'Archivo',sans-serif; font-weight:700; font-style:italic; }
-        .about-layout { display:flex; flex-wrap:wrap; gap:2rem; margin-top:2rem; }
-        .about-text { flex:1 1 60%; }
-        .about-image { flex:1 1 300px; text-align:center; }
-        .about-image img { max-width:100%; border-radius:50%; border:2px solid #000; }
-        footer { margin-top:4rem; padding-top:2rem; border-top:1px solid #000; text-align:center; font-size:0.9rem; }
+        .nav-links a:hover, .nav-links a.active {
+            border-bottom: 2px solid #000; font-weight: 600;
+        }
+
+        h2 { font-family: 'Archivo', sans-serif; font-weight: 700; font-style: italic; }
+
+        /* ───── About layout FIX ───── */
+        .about-layout {
+            display: flex;
+            flex-wrap: nowrap;            /* NEVER wrap */
+            gap: 2rem;
+            align-items: center;         /* vertical centre */
+            margin-top: 2rem;
+        }
+        .about-text {
+            flex: 1 1 60%;               /* text zyada jagah lega */
+        }
+        .about-image {
+            flex: 0 0 auto;              /* image sirf apni width lega */
+            text-align: center;
+        }
+        .about-image img {
+            max-width: 200px;            /* image ki max width */
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            border: 2px solid #000;
+        }
+
+        footer {
+            margin-top: 4rem; padding-top: 2rem;
+            border-top: 1px solid #000;
+            text-align: center; font-size: 0.9rem;
+        }
+
+        /* Mobile: ab bhi side‑by‑side rahega, image chhoti ho sakti hai */
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .about-layout { gap: 1rem; }
+            .about-image img { max-width: 120px; }
+        }
     </style>
 </head>
 <body>
 <div class="page-wrap">
     <nav>
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="education.html">Education</a></li>
-        <li><a href="expertise.html">Expertise</a></li>
-        <li><a href="experience.html">Work</a></li>
-        <li><a href="portfolio.html">Videos</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="expertise.html">Expertise</a></li>
+            <li><a href="experience.html">Work</a></li>
+            <li><a href="portfolio.html">Videos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
     <h2>About Me</h2>
+
     <div class="about-layout">
         <div class="about-text">
             <p>I'm Muhammad Faisal, an AI Advertisement Video Creator who combines research, scriptwriting, AI video generation, hands‑on editing, and voiceover integration to produce advertisement videos for brands and institutes across Facebook, Instagram, TikTok, and YouTube Shorts — alongside promotional images and Instagram/Facebook carousels for services, physical stores, and products. I also run a horror storytelling YouTube channel, which sharpened my ability to write scripts that hook viewers in the first few seconds — a skill I bring directly into ad videos.</p>
         </div>
         <div class="about-image">
-            <img src="images/aboutme.jpg" alt="Muhammad Faisal Khan Portrait">
+            <!-- Agar aapki image ka naam kuch aur hai to src badal dein -->
+            <img src="images/portrait.jpg" alt="Muhammad Faisal Khan Portrait">
         </div>
     </div>
-    <footer>Presented by: Muhammad Faisal Khan | Phone: +92-309-9225353 | Email: faisymyk@gmail.com</footer>
+
+    <footer>
+        Presented by: Muhammad Faisal Khan | Phone: +92-309-9225353 | Email: faisymyk@gmail.com
+    </footer>
 </div>
 </body>
 </html>
