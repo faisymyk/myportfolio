@@ -1,39 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Creative Portfolio | Muhammad Faisal Khan</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,700;1,700&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
-  <meta property="og:title" content="Muhammad Faisal Khan - AI Video Creator Portfolio">
-  <meta property="og:description" content="AI Advertisement Video Creator specializing in research, scriptwriting, AI video generation, and editing.">
-  <meta property="og:image" content="https://faisymyk.github.io/myportfolio/images/profile.jpg">
-  <meta property="og:url" content="https://faisymyk.github.io/myportfolio/">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Video Creator — Portfolio | Karachi, Pakistan</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,600;0,700;1,700&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========== BLACK & WHITE MINIMAL THEME (WITH VERTICAL IFRAME FIX) ========== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 300;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #000;
+            background: #fff;
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 700;
+            font-style: italic;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; border-bottom: 2px solid #000; padding-bottom: 0.25rem; margin-top: 2rem; }
+        h3 { font-size: 1.8rem; margin-top: 1.5rem; }
+        h4 { font-size: 1.3rem; font-weight: 600; font-style: normal; }
+
+        p, li {
+            font-weight: 300;
+            font-size: 1.1rem;
+            color: #222;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: #000;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 400;
+        }
+        a:hover {
+            text-decoration: none;
+            background: #000;
+            color: #fff;
+            padding: 0 4px;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem 2.5rem;
+            padding: 1.5rem 0 2rem 0;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 2.5rem;
+            font-family: 'Archivo', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: #000;
+            background: none;
+            padding: 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+        nav a:hover {
+            background: none;
+            color: #000;
+            border-bottom: 2px solid #000;
+            padding: 0;
+        }
+        nav a.active {
+            border-bottom: 3px solid #000;
+            font-weight: 700;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ccc;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        footer a {
+            color: #000;
+            text-decoration: none;
+            font-weight: 400;
+        }
+        footer a:hover {
+            background: #000;
+            color: #fff;
+            padding: 0 4px;
+        }
+
+        .highlight-box {
+            background: #f5f5f5;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 6px solid #000;
+        }
+
+        .spec-work {
+            opacity: 0.8;
+            border: 1px dashed #888;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            background: #fafafa;
+        }
+        .spec-work h3 { margin-top: 0; }
+
+        img.profile {
+            max-width: 220px;
+            height: auto;
+            border-radius: 50%;
+            margin: 1rem 0 2rem 0;
+            border: 3px solid #000;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .video-item {
+            background: #f8f8f8;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        /* 🔥 Vertical (Instagram) style for Google Drive iframe */
+        .video-item iframe {
+            display: block;
+            width: 400px;
+            height: 711px;        /* 9:16 ratio */
+            max-width: 100%;
+            max-height: 70vh;
+            margin: 0 auto 1rem auto;
+            border: none;
+            background: #000;
+        }
+
+        .video-item h4 {
+            margin-bottom: 0.2rem;
+        }
+        .video-item p {
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .client-text-card {
+            background: #f8f8f8;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .contact-card {
+            background: #f8f8f8;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .badge-verified { background: #000; color: #fff; }
+        .badge-spec     { background: #555; color: #fff; }
+
+        @media (max-width: 600px) {
+            body { padding: 15px; font-size: 16px; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            nav { gap: 0.8rem 1.5rem; font-size: 1rem; }
+            .highlight-box { padding: 1rem; }
+            .video-item iframe {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 9 / 16;
+                max-height: 50vh;
+            }
+        }
+    </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="education.html">Education</a>
-    <a href="skills.html">Skills</a>
-    <a href="work.html">Work</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-  <main>
-    <h1>Creative Portfolio</h1>
-    <p style="font-size: 1.5rem; font-weight: 400; margin-bottom: 2rem;">Presented by: Muhammad Faisal Khan</p>
-    <div style="margin: 3rem 0; padding: 2rem; background: #f0f0f0; border: 2px solid #000;">
-      <p style="font-size: 1.2rem; margin: 0;"><strong>Phone:</strong> +92-309-9225353</p>
-      <p style="font-size: 1.2rem; margin: 0;"><strong>Email:</strong> faisymyk@gmail.com</p>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="active">Portfolio</a>
+        <a href="#verified">Client Work</a>
+        <a href="#spec">Practice</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Hero -->
+    <h1>AI Video<br>Creator.</h1>
+    <p style="font-size:1.3rem; font-weight:400;">Based in Karachi, Pakistan.<br>Crafting compelling AI-driven ad videos for brands &amp; businesses.</p>
+    <div style="height:2px; background:#000; width:60px; margin:2rem 0;"></div>
+
+    <!-- Verified Client Work -->
+    <h2 id="verified">Real Client Work</h2>
+    <div class="section-badge badge-verified">VERIFIED CLIENT PROJECTS</div>
+    <p>These are actual paid projects delivered for clients. Each video was created using AI-powered workflows.</p>
+
+    <div class="video-grid">
+        <!-- Eureka Academy -->
+        <div class="video-item">
+            <iframe src="https://drive.google.com/file/d/1zM4GOplNVjwrjTiL1pjJJgOqRTJAqAgu/preview"
+                    allow="autoplay; fullscreen"
+                    allowfullscreen
+                    loading="lazy"
+                    title="Eureka - Digital Marketing Academy"></iframe>
+            <h4>Eureka — Digital Marketing Academy</h4>
+            <p><strong>✓ Verified Client</strong> — AI advertisement video</p>
+        </div>
+
+        <!-- UCG Boutique -->
+        <div class="video-item">
+            <iframe src="https://drive.google.com/file/d/1XsmHja0G9M9LBOtP04QVS_QGQ1FUDe14/preview"
+                    allow="autoplay; fullscreen"
+                    allowfullscreen
+                    loading="lazy"
+                    title="UCG Boutique"></iframe>
+            <h4>UCG Boutique</h4>
+            <p><strong>✓ Verified Client</strong> — AI advertisement video</p>
+        </div>
+
+        <!-- Eureka Mug -->
+        <div class="video-item">
+            <iframe src="https://drive.google.com/file/d/1snnyZPGiIItJXpftikmZb4Fodq-iV3m_/preview"
+                    allow="autoplay; fullscreen"
+                    allowfullscreen
+                    loading="lazy"
+                    title="Eureka Mug"></iframe>
+            <h4>Eureka Mug</h4>
+            <p><strong>✓ Verified Client</strong> — Smart temperature-controlled mug (US-based brand)</p>
+        </div>
+
+        <!-- Journey with Munazza Khan (text only) -->
+        <div class="client-text-card">
+            <div style="font-size:2rem;">📋</div>
+            <div>
+                <h4 style="margin:0;">Journey with Munazza Khan</h4>
+                <p style="margin:0;">Verified client — video not included in this portfolio batch</p>
+            </div>
+        </div>
     </div>
-    <p style="font-size: 1.2rem; max-width: 700px;">AI-powered advertisement videos · Social media content · Brand campaigns · Research & scriptwriting · Post-production.</p>
-  </main>
-  <footer>
-    <p>© 2024 Muhammad Faisal Khan — <a href="mailto:faisymyk@gmail.com">faisymyk@gmail.com</a></p>
-  </footer>
+
+    <!-- Spec / Practice Work -->
+    <div class="spec-work" id="spec">
+        <h2>Practice &amp; Spec Ad Work</h2>
+        <div class="section-badge badge-spec">⚠ SPEC WORK — NOT PAID PROJECTS</div>
+        <p><strong>Important:</strong> The work below is self-initiated practice or speculative ad concepts. These were not commissioned or paid for by the brands shown.</p>
+
+        <div class="video-grid">
+            <!-- Pediasure -->
+            <div class="video-item">
+                <iframe src="https://drive.google.com/file/d/1FL9r0bDm_ucVvpAEPTzpnP5_E3aPMStU/preview"
+                        allow="autoplay; fullscreen"
+                        allowfullscreen
+                        loading="lazy"
+                        title="Pediasure - Spec Ad"></iframe>
+                <h4>Pediasure</h4>
+                <p><strong>⚠ Spec Work</strong> — Practice AI advertisement</p>
+            </div>
+
+            <!-- Vaseline -->
+            <div class="video-item">
+                <iframe src="https://drive.google.com/file/d/1HpPwQMP4RrerBCDMLMA_0_SVhhs_oCb0/preview"
+                        allow="autoplay; fullscreen"
+                        allowfullscreen
+                        loading="lazy"
+                        title="Vaseline - Spec Ad"></iframe>
+                <h4>Vaseline</h4>
+                <p><strong>⚠ Spec Work</strong> — Practice AI advertisement</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <h2 id="contact">Get in Touch</h2>
+    <p>Available for freelance AI video advertisement projects. Reach out to discuss your brand's next campaign.</p>
+    <div class="contact-grid">
+        <div class="contact-card">
+            <strong>Email</strong><br>
+            <a href="mailto:faisymyk@gmail.com">faisymyk@gmail.com</a>
+        </div>
+        <div class="contact-card">
+            <strong>Phone / WhatsApp</strong><br>
+            <a href="tel:+923099225353">+92-309-9225353</a>
+        </div>
+        <div class="contact-card">
+            <strong>Location</strong><br>
+            Karachi, Pakistan
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 — AI Video Creator Portfolio. Karachi, Pakistan.
+    </footer>
+
 </body>
 </html>
