@@ -64,7 +64,7 @@
         .video-card {
             position: relative;
             cursor: pointer;
-            background: #f5f5f5;
+            background: #000; /* fallback for missing image */
             border: 1px solid #000;
             aspect-ratio: 9 / 16;
             overflow: hidden;
@@ -77,23 +77,22 @@
             object-fit: cover;
             display: block;
         }
-        .video-card .overlay {
+        /* Fallback when no image (image fails to load) */
+        .video-card img.error-fallback {
+            display: none;
+        }
+        .video-card .fallback-play {
             position: absolute;
             top: 0; left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .video-card:hover .overlay { opacity: 1; }
-        .play-icon {
-            font-size: 3rem;
+            background: #000;
             color: #fff;
-            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            font-size: 3rem;
+            opacity: 0.7;
         }
         .card-title {
             text-align: center;
@@ -162,7 +161,7 @@
     <p>A complete look at the video work I've produced — scroll and watch.</p>
 
     <div class="video-grid" id="videoGrid">
-        <!-- Cards will be injected by JS to keep it DRY -->
+        <!-- Cards will be injected by JS -->
     </div>
 
     <!-- Lightbox -->
@@ -178,31 +177,36 @@
     </footer>
 
     <script>
-        // Video data: title, drive file ID, isSpec (adds label)
+        // Video data: title, drive file ID, thumbnail path (in images folder), isSpec
         const videos = [
             {
                 title: "Eureka Digital Marketing Academy",
                 fileId: "1zM4GOplNVjwrjTiL1pjJJgOqRTJAqAgu",
+                thumb: "images/thumb-eureka-academy.jpg",
                 spec: false
             },
             {
                 title: "UCG Boutique",
                 fileId: "1XsmHja0G9M9LBOtP04QVS_QGQ1FUDe14",
+                thumb: "images/thumb-ucg.jpg",
                 spec: false
             },
             {
                 title: "Eureka Mug (USA)",
                 fileId: "1snnyZPGiIItJXpftikmZb4Fodq-iV3m_",
+                thumb: "images/thumb-eureka-mug.jpg",
                 spec: false
             },
             {
                 title: "Pediasure (spec ad)",
                 fileId: "1FL9r0bDm_ucVvpAEPTzpnP5_E3aPMStU",
+                thumb: "images/thumb-pediasure.jpg",
                 spec: true
             },
             {
                 title: "Vaseline (spec ad)",
                 fileId: "1HpPwQMP4RrerBCDMLMA_0_SVhhs_oCb0",
+                thumb: "images/thumb-vaseline.jpg",
                 spec: true
             }
         ];
@@ -215,18 +219,30 @@
         function createCard(video) {
             const card = document.createElement('div');
             card.className = 'video-card';
-            card.innerHTML = `
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='320' viewBox='0 0 180 320'%3E%3Crect fill='%23ddd' width='180' height='320'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14' fill='%23888'%3E${video.spec ? 'SPEC' : 'WATCH'}%3C/text%3E%3C/svg%3E"
-                     alt="${video.title}">
-                <div class="overlay"><span class="play-icon">▶</span></div>
-            `;
+            
+            const img = document.createElement('img');
+            img.src = video.thumb;
+            img.alt = video.title;
+            img.loading = 'lazy';
+            // Fallback: agar image load na ho to black background + play icon
+            img.onerror = function() {
+                this.style.display = 'none';
+                const fallback = document.createElement('div');
+                fallback.className = 'fallback-play';
+                fallback.innerHTML = '▶';
+                card.prepend(fallback);
+            };
+            card.appendChild(img);
+
             card.addEventListener('click', () => {
                 lightboxIframe.src = `https://drive.google.com/file/d/${video.fileId}/preview`;
                 lightbox.classList.add('active');
             });
+
             const titleEl = document.createElement('p');
             titleEl.className = 'card-title';
             titleEl.textContent = video.title + (video.spec ? ' (unpaid concept)' : '');
+
             const container = document.createElement('div');
             container.appendChild(card);
             container.appendChild(titleEl);
@@ -237,7 +253,7 @@
 
         closeLightbox.addEventListener('click', () => {
             lightbox.classList.remove('active');
-            lightboxIframe.src = ''; // stop video
+            lightboxIframe.src = '';
         });
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) {
