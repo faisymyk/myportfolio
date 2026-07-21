@@ -20,11 +20,7 @@
             font-family: 'Archivo', sans-serif;
             font-weight: 700; font-style: italic;
         }
-        /* Universal container */
-        .page-wrap {
-            max-width: 1200px; margin: 0 auto; padding: 0 20px;
-        }
-        /* ---------- NAV BAR (apply site‑wide) ---------- */
+        .page-wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         nav {
             display: flex; flex-wrap: wrap;
             justify-content: space-between; align-items: center;
@@ -43,16 +39,9 @@
         }
         .nav-links a:hover, .nav-links a.active { border-bottom: 2px solid #000; font-weight: 600; }
 
-        /* ---------- PAGE HEADING SPACING ---------- */
-        .page-header {
-            margin-bottom: 48px;
-        }
-        .page-header h2 {
-            font-size: 2.5rem; border-bottom: 2px solid #000;
-            padding-bottom: 0.25rem; margin-bottom: 0.75rem;
-        }
+        .page-header { margin-bottom: 48px; }
+        .page-header h2 { font-size: 2.5rem; border-bottom: 2px solid #000; padding-bottom: 0.25rem; margin-bottom: 0.75rem; }
 
-        /* ---------- VIDEO GRID ---------- */
         .video-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -62,8 +51,6 @@
         @media (min-width: 768px) {
             .video-grid { grid-template-columns: repeat(4, 1fr); }
         }
-
-        /* Card locked to 9:16 */
         .video-card {
             position: relative; cursor: pointer;
             background: #000; border-radius: 4px;
@@ -73,11 +60,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         .video-card:hover { transform: scale(1.03); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-        .video-card img {
-            width: 100%; height: 100%; object-fit: cover; display: block;
-        }
-
-        /* Play overlay */
+        .video-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .video-card .play-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.25);
@@ -94,8 +77,6 @@
             transition: transform 0.25s;
         }
         .video-card:hover .play-icon { transform: scale(1.1); }
-
-        /* Card label */
         .card-title {
             text-align: center; margin-top: 0.6rem;
             font-size: 0.75rem; font-weight: 500;
@@ -103,7 +84,6 @@
             color: #666;
         }
 
-        /* ---------- LIGHTBOX (unchanged, still adaptive) ---------- */
         .lightbox {
             display: none; position: fixed; top:0; left:0; width:100%; height:100%;
             background: rgba(0,0,0,0.92); backdrop-filter: blur(6px);
@@ -125,11 +105,10 @@
             display: flex; align-items: center; justify-content: center;
         }
         .lightbox-close:hover { background: #000; color: #fff; border-color: #fff; }
-
-        footer {
-            margin-top: 4rem; padding-top: 2rem;
-            border-top: 1px solid #000;
-            text-align: center; font-size: 0.9rem; font-weight: 300;
+        footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #000; text-align: center; font-size: 0.9rem; font-weight: 300; }
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .lightbox-container { width: 96% !important; }
         }
     </style>
 </head>
@@ -155,7 +134,6 @@
 
         <div class="video-grid" id="videoGrid"></div>
 
-        <!-- Lightbox (same adaptive logic) -->
         <div class="lightbox" id="lightbox">
             <div class="lightbox-container" id="lightboxContainer">
                 <button class="lightbox-close" id="closeLightbox">&times;</button>
@@ -186,7 +164,6 @@
         function createCard(video) {
             const card = document.createElement('div');
             card.className = 'video-card';
-
             const img = document.createElement('img');
             img.src = video.thumb;
             img.alt = video.title;
