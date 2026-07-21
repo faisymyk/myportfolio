@@ -5,31 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All My Work | Muhammad Faisal Khan</title>
     <meta property="og:title" content="All My Work — AI Video Portfolio">
-    <meta property="og:description" content="A complete grid of vertical AI‑generated ad videos. Tap to watch.">
+    <meta property="og:description" content="A complete grid of AI‑generated ad videos. Tap to watch.">
     <meta property="og:image" content="https://faisymyk.github.io/myportfolio/images/preview.jpg">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family: 'Barlow', sans-serif;
-            font-weight: 100;
-            font-size: 18px;
-            color: #000;
-            background: #fff;
-            padding: 20px;
-            max-width: 1100px;
-            margin: 0 auto;
+            font-weight: 100; font-size: 18px;
+            color: #000; background: #fff;
+            padding: 20px; max-width: 1100px; margin: 0 auto;
         }
         h1, h2, h3, .logo {
             font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-style: italic;
+            font-weight: 700; font-style: italic;
         }
         nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; flex-wrap: wrap;
+            justify-content: space-between; align-items: center;
             padding: 1.5rem 0;
             border-bottom: 1px solid #000;
             margin-bottom: 2rem;
@@ -37,11 +30,8 @@
         .logo { font-size: 1.8rem; color: #000; text-decoration: none; }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a {
-            text-decoration: none;
-            color: #000;
-            font-weight: 400;
-            font-size: 1rem;
-            padding-bottom: 4px;
+            text-decoration: none; color: #000; font-weight: 400;
+            font-size: 1rem; padding-bottom: 4px;
             border-bottom: 2px solid transparent;
             transition: 0.2s;
         }
@@ -49,97 +39,75 @@
         footer {
             margin-top: 4rem; padding-top: 2rem;
             border-top: 1px solid #000;
-            text-align: center;
-            font-size: 0.9rem;
-            font-weight: 300;
+            text-align: center; font-size: 0.9rem; font-weight: 300;
         }
 
-        /* Video grid */
+        /* Grid */
         .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            gap: 1.5rem; margin-top: 2rem;
         }
         .video-card {
-            position: relative;
-            cursor: pointer;
-            background: #000; /* fallback for missing image */
-            border: 1px solid #000;
-            aspect-ratio: 9 / 16;
-            overflow: hidden;
-            transition: transform 0.3s;
+            position: relative; cursor: pointer;
+            background: #000; border: 1px solid #000;
+            aspect-ratio: 9 / 16; overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 4px;
         }
-        .video-card:hover { transform: scale(1.02); }
+        .video-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
         .video-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        /* Fallback when no image (image fails to load) */
-        .video-card img.error-fallback {
-            display: none;
+            width: 100%; height: 100%; object-fit: cover; display: block;
         }
         .video-card .fallback-play {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #000;
-            color: #fff;
-            font-size: 3rem;
-            opacity: 0.7;
+            position: absolute; top:0; left:0; width:100%; height:100%;
+            display: flex; align-items: center; justify-content: center;
+            background: #000; color: #fff; font-size: 3rem; opacity: 0.7;
         }
         .card-title {
-            text-align: center;
-            font-size: 0.9rem;
-            margin-top: 0.3rem;
-            font-weight: 400;
-            letter-spacing: 0.02em;
+            text-align: center; font-size: 0.9rem; margin-top: 0.3rem;
+            font-weight: 400; letter-spacing: 0.02em;
         }
 
-        /* Lightbox */
+        /* Lightbox (the true professional touch) */
         .lightbox {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 999;
-            align-items: center;
-            justify-content: center;
+            display: none; position: fixed; top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.92); backdrop-filter: blur(6px);
+            z-index: 999; align-items: center; justify-content: center;
+            transition: opacity 0.3s;
         }
         .lightbox.active { display: flex; }
-        .lightbox-content {
+
+        .lightbox-container {
             position: relative;
-            width: 90%;
-            max-width: 400px;
-            aspect-ratio: 9/16;
             background: #000;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border-radius: 6px; overflow: hidden;
+            transition: all 0.3s ease;
         }
-        .lightbox-content iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .lightbox-container iframe {
+            width: 100%; height: 100%; border: none; display: block;
         }
-        .close-lightbox {
-            position: absolute;
-            top: -2rem;
-            right: -1rem;
-            font-size: 2rem;
-            color: #fff;
-            cursor: pointer;
-            background: none;
-            border: none;
+        .lightbox-close {
+            position: absolute; top: -40px; right: -10px;
+            width: 40px; height: 40px;
+            background: #fff; color: #000;
+            border: 1px solid #000; border-radius: 50%;
+            font-size: 1.5rem; line-height: 1;
+            cursor: pointer; transition: 0.2s;
+            display: flex; align-items: center; justify-content: center;
         }
+        .lightbox-close:hover {
+            background: #000; color: #fff; border-color: #fff;
+        }
+
         @media (max-width: 600px) {
             body { font-size: 16px; }
             .video-grid { grid-template-columns: repeat(2, 1fr); }
+            .lightbox-container { width: 96% !important; }
         }
     </style>
 </head>
@@ -160,14 +128,12 @@
     <h2>All My Work</h2>
     <p>A complete look at the video work I've produced — scroll and watch.</p>
 
-    <div class="video-grid" id="videoGrid">
-        <!-- Cards will be injected by JS -->
-    </div>
+    <div class="video-grid" id="videoGrid"></div>
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <button class="close-lightbox" id="closeLightbox">&times;</button>
+        <div class="lightbox-container" id="lightboxContainer">
+            <button class="lightbox-close" id="closeLightbox">&times;</button>
             <iframe id="lightboxIframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
         </div>
     </div>
@@ -177,90 +143,71 @@
     </footer>
 
     <script>
-        // Video data: title, drive file ID, thumbnail path (in images folder), isSpec
         const videos = [
-            {
-                title: "Eureka Digital Marketing Academy",
-                fileId: "1zM4GOplNVjwrjTiL1pjJJgOqRTJAqAgu",
-                thumb: "images/thumb-eureka-academy.jpg",
-                spec: false
-            },
-            {
-                title: "UCG Boutique",
-                fileId: "1XsmHja0G9M9LBOtP04QVS_QGQ1FUDe14",
-                thumb: "images/thumb-ucg.jpg",
-                spec: false
-            },
-            {
-                title: "Eureka Mug (USA)",
-                fileId: "1snnyZPGiIItJXpftikmZb4Fodq-iV3m_",
-                thumb: "images/thumb-eureka-mug.jpg",
-                spec: false
-            },
-            {
-                title: "Pediasure (spec ad)",
-                fileId: "1FL9r0bDm_ucVvpAEPTzpnP5_E3aPMStU",
-                thumb: "images/thumb-pediasure.jpg",
-                spec: true
-            },
-            {
-                title: "Vaseline (spec ad)",
-                fileId: "1HpPwQMP4RrerBCDMLMA_0_SVhhs_oCb0",
-                thumb: "images/thumb-vaseline.jpg",
-                spec: true
-            }
+            { title:"Eureka Digital Marketing Academy", fileId:"1zM4GOplNVjwrjTiL1pjJJgOqRTJAqAgu", thumb:"images/thumb-eureka-academy.jpg", spec:false, aspect:"16:9" },
+            { title:"UCG Boutique", fileId:"1XsmHja0G9M9LBOtP04QVS_QGQ1FUDe14", thumb:"images/thumb-ucg.jpg", spec:false, aspect:"9:16" },
+            { title:"Eureka Mug (USA)", fileId:"1snnyZPGiIItJXpftikmZb4Fodq-iV3m_", thumb:"images/thumb-eureka-mug.jpg", spec:false, aspect:"9:16" },
+            { title:"Pediasure (spec ad)", fileId:"1FL9r0bDm_ucVvpAEPTzpnP5_E3aPMStU", thumb:"images/thumb-pediasure.jpg", spec:true, aspect:"16:9" },
+            { title:"Vaseline (spec ad)", fileId:"1HpPwQMP4RrerBCDMLMA_0_SVhhs_oCb0", thumb:"images/thumb-vaseline.jpg", spec:true, aspect:"16:9" }
         ];
 
         const grid = document.getElementById('videoGrid');
         const lightbox = document.getElementById('lightbox');
+        const lightboxContainer = document.getElementById('lightboxContainer');
         const lightboxIframe = document.getElementById('lightboxIframe');
-        const closeLightbox = document.getElementById('closeLightbox');
+        const closeBtn = document.getElementById('closeLightbox');
 
         function createCard(video) {
             const card = document.createElement('div');
             card.className = 'video-card';
-            
             const img = document.createElement('img');
             img.src = video.thumb;
             img.alt = video.title;
             img.loading = 'lazy';
-            // Fallback: agar image load na ho to black background + play icon
             img.onerror = function() {
                 this.style.display = 'none';
-                const fallback = document.createElement('div');
-                fallback.className = 'fallback-play';
-                fallback.innerHTML = '▶';
-                card.prepend(fallback);
+                const fb = document.createElement('div');
+                fb.className = 'fallback-play';
+                fb.innerHTML = '▶';
+                card.prepend(fb);
             };
             card.appendChild(img);
-
-            card.addEventListener('click', () => {
-                lightboxIframe.src = `https://drive.google.com/file/d/${video.fileId}/preview`;
-                lightbox.classList.add('active');
-            });
-
+            card.addEventListener('click', () => openLightbox(video.fileId, video.aspect));
             const titleEl = document.createElement('p');
             titleEl.className = 'card-title';
             titleEl.textContent = video.title + (video.spec ? ' (unpaid concept)' : '');
-
-            const container = document.createElement('div');
-            container.appendChild(card);
-            container.appendChild(titleEl);
-            return container;
+            const wrapper = document.createElement('div');
+            wrapper.appendChild(card);
+            wrapper.appendChild(titleEl);
+            return wrapper;
         }
 
-        videos.forEach(v => grid.appendChild(createCard(v)));
+        function openLightbox(fileId, aspect) {
+            lightboxIframe.src = `https://drive.google.com/file/d/${fileId}/preview`;
+            if (aspect === "16:9") {
+                lightboxContainer.style.width = "90%";
+                lightboxContainer.style.maxWidth = "960px";
+                lightboxContainer.style.aspectRatio = "16 / 9";
+            } else {
+                lightboxContainer.style.width = "90%";
+                lightboxContainer.style.maxWidth = "400px";
+                lightboxContainer.style.aspectRatio = "9 / 16";
+            }
+            lightbox.classList.add('active');
+        }
 
-        closeLightbox.addEventListener('click', () => {
+        function closeLightboxFn() {
             lightbox.classList.remove('active');
             lightboxIframe.src = '';
-        });
+        }
+
+        closeBtn.addEventListener('click', closeLightboxFn);
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                lightbox.classList.remove('active');
-                lightboxIframe.src = '';
-            }
+            if (e.target === lightbox) closeLightboxFn();
         });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightboxFn(); });
+
+        videos.forEach(v => grid.appendChild(createCard(v)));
     </script>
 </body>
 </html>
