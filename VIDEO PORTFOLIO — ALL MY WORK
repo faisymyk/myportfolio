@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All My Work | Muhammad Faisal Khan</title>
+    <meta property="og:title" content="All My Work — AI Video Portfolio">
+    <meta property="og:description" content="A complete grid of vertical AI‑generated ad videos. Tap to watch.">
+    <meta property="og:image" content="https://faisymyk.github.io/myportfolio/images/preview.jpg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 100;
+            font-size: 18px;
+            color: #000;
+            background: #fff;
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        h1, h2, h3, .logo {
+            font-family: 'Archivo', sans-serif;
+            font-weight: 700;
+            font-style: italic;
+        }
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #000;
+            margin-bottom: 2rem;
+        }
+        .logo { font-size: 1.8rem; color: #000; text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 400;
+            font-size: 1rem;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active { border-bottom-color: #000; font-weight: 700; }
+        footer {
+            margin-top: 4rem; padding-top: 2rem;
+            border-top: 1px solid #000;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        /* Video grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .video-card {
+            position: relative;
+            cursor: pointer;
+            background: #f5f5f5;
+            border: 1px solid #000;
+            aspect-ratio: 9 / 16;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .video-card:hover { transform: scale(1.02); }
+        .video-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .video-card .overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .video-card:hover .overlay { opacity: 1; }
+        .play-icon {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .card-title {
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox-content {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            aspect-ratio: 9/16;
+            background: #000;
+        }
+        .lightbox-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .close-lightbox {
+            position: absolute;
+            top: -2rem;
+            right: -1rem;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .video-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">MF.</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="expertise.html">Expertise</a></li>
+            <li><a href="experience.html">Work</a></li>
+            <li><a href="portfolio.html" class="active">Videos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <h2>All My Work</h2>
+    <p>A complete look at the video work I've produced — scroll and watch.</p>
+
+    <div class="video-grid" id="videoGrid">
+        <!-- Cards will be injected by JS to keep it DRY -->
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="close-lightbox" id="closeLightbox">&times;</button>
+            <iframe id="lightboxIframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <footer>
+        Presented by: Muhammad Faisal Khan | Phone: +92-309-9225353 | Email: faisymyk@gmail.com
+    </footer>
+
+    <script>
+        // Video data: title, drive file ID, isSpec (adds label)
+        const videos = [
+            {
+                title: "Eureka Digital Marketing Academy",
+                fileId: "1zM4GOplNVjwrjTiL1pjJJgOqRTJAqAgu",
+                spec: false
+            },
+            {
+                title: "UCG Boutique",
+                fileId: "1XsmHja0G9M9LBOtP04QVS_QGQ1FUDe14",
+                spec: false
+            },
+            {
+                title: "Eureka Mug (USA)",
+                fileId: "1snnyZPGiIItJXpftikmZb4Fodq-iV3m_",
+                spec: false
+            },
+            {
+                title: "Pediasure (spec ad)",
+                fileId: "1FL9r0bDm_ucVvpAEPTzpnP5_E3aPMStU",
+                spec: true
+            },
+            {
+                title: "Vaseline (spec ad)",
+                fileId: "1HpPwQMP4RrerBCDMLMA_0_SVhhs_oCb0",
+                spec: true
+            }
+        ];
+
+        const grid = document.getElementById('videoGrid');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxIframe = document.getElementById('lightboxIframe');
+        const closeLightbox = document.getElementById('closeLightbox');
+
+        function createCard(video) {
+            const card = document.createElement('div');
+            card.className = 'video-card';
+            card.innerHTML = `
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='320' viewBox='0 0 180 320'%3E%3Crect fill='%23ddd' width='180' height='320'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14' fill='%23888'%3E${video.spec ? 'SPEC' : 'WATCH'}%3C/text%3E%3C/svg%3E"
+                     alt="${video.title}">
+                <div class="overlay"><span class="play-icon">▶</span></div>
+            `;
+            card.addEventListener('click', () => {
+                lightboxIframe.src = `https://drive.google.com/file/d/${video.fileId}/preview`;
+                lightbox.classList.add('active');
+            });
+            const titleEl = document.createElement('p');
+            titleEl.className = 'card-title';
+            titleEl.textContent = video.title + (video.spec ? ' (unpaid concept)' : '');
+            const container = document.createElement('div');
+            container.appendChild(card);
+            container.appendChild(titleEl);
+            return container;
+        }
+
+        videos.forEach(v => grid.appendChild(createCard(v)));
+
+        closeLightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            lightboxIframe.src = ''; // stop video
+        });
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                lightboxIframe.src = '';
+            }
+        });
+    </script>
+</body>
+</html>
