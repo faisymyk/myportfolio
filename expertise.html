@@ -43,56 +43,43 @@
             font-size: 2.8rem; line-height: 1.2;
             margin-bottom: 1rem;
         }
-        h3 {
-            font-family: 'Archivo', sans-serif;
-            font-weight: 700; font-style: italic;
-        }
 
-        /* ── Section 1: Core Expertise 2‑column grid ── */
+        /* ── Unified expertise grid ── */
         .expertise-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
             margin-top: 2rem;
-            margin-bottom: 4rem;
         }
-        .left-col .intro { margin-bottom: 2.5rem; color: #444; line-height: 1.7; }
-        .expertise-item { margin-bottom: 2.5rem; }
+        .intro {
+            grid-column: 1 / -1;   /* intro spans full width */
+            margin-bottom: 1rem;
+            color: #444;
+            line-height: 1.7;
+        }
+        .expertise-item {
+            margin-bottom: 2.5rem;
+        }
         .expertise-item h3 {
-            font-size: 1.5rem; margin-bottom: 0.4rem; color: #000;
+            font-family: 'Archivo', sans-serif;
+            font-weight: 700; font-style: italic;
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
+            color: #000;
         }
         .expertise-item p {
-            color: #666; font-weight: 300; font-size: 1rem; line-height: 1.6;
-        }
-
-        /* ── Section 2: Marketing & Design (no image) ── */
-        .marketing-section {
-            border-top: 2px solid #000;
-            padding-top: 3rem;
-            margin-top: 2rem;
-        }
-        .marketing-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-        .marketing-grid .expertise-item h3 {
-            font-size: 1.8rem;   /* thoda bada for importance */
-            color: #222;
-        }
-        .marketing-grid .expertise-item p {
-            font-size: 1.1rem;
-            color: #555;
-            line-height: 1.7;
+            color: #666;
+            font-weight: 300;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         @media (max-width: 768px) {
-            .expertise-grid,
-            .marketing-grid {
+            .expertise-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
+            .intro { grid-column: auto; }
             h2 { font-size: 2.2rem; }
         }
 
@@ -118,11 +105,14 @@
         </ul>
     </nav>
 
-    <!-- Section 1 -->
     <h2>Core Expertise</h2>
+
     <div class="expertise-grid">
+        <!-- Intro paragraph spans both columns -->
+        <p class="intro">Every project is developed through a strategic creative process that combines research, visual storytelling, AI production, graphic design, and post‑production to deliver high‑quality marketing assets that are ready for real‑world campaigns.</p>
+
+        <!-- Left column: 3 items -->
         <div class="left-col">
-            <p class="intro">Every project is developed through a strategic creative process that combines research, visual storytelling, AI production, graphic design, and post‑production to deliver high‑quality marketing assets that are ready for real‑world campaigns.</p>
             <div class="expertise-item">
                 <h3>Scriptwriting &amp; Concept Development</h3>
                 <p>Building clear messages, engaging hooks, and ad concepts that connect with the audience from the first second.</p>
@@ -131,12 +121,14 @@
                 <h3>Research &amp; Content Planning</h3>
                 <p>Understanding the product, service, or brand before creating content, so each design or video feels relevant, purposeful, and audience‑focused.</p>
             </div>
-        </div>
-        <div class="right-col">
             <div class="expertise-item">
                 <h3>AI Video Production</h3>
                 <p>Producing high‑quality AI‑powered advertisement videos with consistent characters, cinematic visuals, and platform‑ready storytelling.</p>
             </div>
+        </div>
+
+        <!-- Right column: 4 items -->
+        <div class="right-col">
             <div class="expertise-item">
                 <h3>Social Media Content Design</h3>
                 <p>Creating high‑impact Facebook and Instagram posts, engagement creatives, and aesthetically structured carousel designs that communicate information with clarity and professionalism.</p>
@@ -145,13 +137,6 @@
                 <h3>Post‑Production &amp; Motion Design</h3>
                 <p>Refining every project through professional editing, motion graphics, voiceover integration, animation, sound design, and final polishing for a seamless viewing experience.</p>
             </div>
-        </div>
-    </div>
-
-    <!-- Section 2: Marketing & Design (no image, just text grid) -->
-    <div class="marketing-section">
-        <h2>Marketing &amp; Design Expertise</h2>
-        <div class="marketing-grid">
             <div class="expertise-item">
                 <h3>Marketing‑Focused Content Creation</h3>
                 <p>Combining creative execution with digital marketing principles to produce content that not only looks professional but also supports brand awareness, audience engagement, and business growth.</p>
