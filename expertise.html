@@ -4,50 +4,158 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Core Expertise | Muhammad Faisal Khan</title>
-    <meta property="og:title" content="Core Expertise — AI Video Production & Design">
+    <meta property="og:title" content="Core Expertise — AI Video Production &amp; Design">
     <meta property="og:description" content="Research, scriptwriting, AI video, motion design, and marketing‑focused content creation.">
     <meta property="og:image" content="https://faisymyk.github.io/myportfolio/images/preview.jpg">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Barlow',sans-serif; font-weight:100; font-size:18px; color:#000; background:#fff; padding:20px; }
-        .page-wrap { max-width:1200px; margin:0 auto; }
-        nav { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:1.5rem 0; border-bottom:1px solid #000; margin-bottom:2rem; }
-        .logo { font-family:'Archivo',sans-serif; font-weight:700; font-style:italic; font-size:1.8rem; color:#000; text-decoration:none; }
-        .nav-links { display:flex; gap:2.5rem; list-style:none; }
-        .nav-links a { text-decoration:none; color:#000; font-weight:400; font-size:0.95rem; letter-spacing:0.7px; text-transform:uppercase; padding-bottom:6px; border-bottom:2px solid transparent; transition:0.2s; }
-        .nav-links a:hover, .nav-links a.active { border-bottom:2px solid #000; font-weight:600; }
-        h2,h3 { font-family:'Archivo',sans-serif; font-weight:700; font-style:italic; }
-        .list { display:grid; gap:1.5rem; margin-top:2rem; }
-        .item { border-left:2px solid #000; padding-left:1.5rem; }
-        footer { margin-top:4rem; padding-top:2rem; border-top:1px solid #000; text-align:center; font-size:0.9rem; }
+        body {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 100; font-size: 18px;
+            color: #000; background: #fff;
+            padding: 20px;
+        }
+        .page-wrap { max-width: 1200px; margin: 0 auto; }
+
+        /* ── Navigation ── */
+        nav {
+            display: flex; justify-content: flex-end;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #000;
+            margin-bottom: 3rem;
+        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: #000; font-weight: 400;
+            font-size: 0.95rem; letter-spacing: 0.7px;
+            text-transform: uppercase;
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            border-bottom: 2px solid #000; font-weight: 600;
+        }
+
+        h2 {
+            font-family: 'Archivo', sans-serif;
+            font-weight: 700; font-style: italic;
+            font-size: 2.8rem; line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        /* ── Two-column grid ── */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        /* Left column */
+        .left-col .intro {
+            margin-bottom: 2.5rem;
+            color: #444;
+            line-height: 1.7;
+        }
+        .expertise-item {
+            margin-bottom: 2.5rem;
+        }
+        .expertise-item h3 {
+            font-family: 'Archivo', sans-serif;
+            font-weight: 700; font-style: italic;
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
+            color: #000;
+        }
+        .expertise-item p {
+            color: #666;
+            font-weight: 300;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Right column */
+        .right-col {
+            padding-top: 0;   /* aligns with top of left column */
+        }
+
+        /* Mobile: single column */
+        @media (max-width: 768px) {
+            .expertise-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            h2 { font-size: 2.2rem; }
+        }
+
+        footer {
+            margin-top: 5rem; padding-top: 2rem;
+            border-top: 1px solid #000;
+            text-align: center; font-size: 0.9rem;
+            color: #000;
+            font-weight: 300;
+        }
     </style>
 </head>
 <body>
 <div class="page-wrap">
-   <nav>
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="education.html">Education</a></li>
-        <li><a href="expertise.html" class="active">Expertise</a></li>
-        <li><a href="experience.html">Work</a></li>
-        <li><a href="portfolio.html">Videos</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
-    <h2>Core Expertise</h2>
-    <p>Every project is developed through a strategic creative process…</p>
-    <div class="list">
-        <div class="item"><strong>Research &amp; Content Planning</strong> — Understanding the product, service, or brand before creating content.</div>
-        <div class="item"><strong>Scriptwriting &amp; Concept Development</strong> — Building clear messages and engaging hooks.</div>
-        <div class="item"><strong>AI Video Production</strong> — Consistent characters, cinematic visuals, platform‑ready storytelling.</div>
-        <div class="item"><strong>Social Media Content Design</strong> — High‑impact posts, carousels, and engagement creatives.</div>
-        <div class="item"><strong>Post‑Production &amp; Motion Design</strong> — Professional editing, motion graphics, voiceover, sound design.</div>
-        <div class="item"><strong>Marketing‑Focused Content Creation</strong> — Creative execution with digital marketing principles.</div>
-        <div class="item"><strong>Graphic Design &amp; Brand Creatives</strong> — Keyframe‑based animation, dynamic visual timing.</div>
+    <!-- Navigation -->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="expertise.html" class="active">Expertise</a></li>
+            <li><a href="experience.html">Work</a></li>
+            <li><a href="portfolio.html">Videos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main content: two columns -->
+    <div class="expertise-grid">
+        <!-- LEFT COLUMN -->
+        <div class="left-col">
+            <h2>Core Expertise</h2>
+            <p class="intro">
+                Every project is developed through a strategic creative process that combines research, visual storytelling, AI production, graphic design, and post‑production to deliver high‑quality marketing assets that are ready for real‑world campaigns.
+            </p>
+
+            <div class="expertise-item">
+                <h3>Scriptwriting &amp; Concept Development</h3>
+                <p>Building clear messages, engaging hooks, and ad concepts that connect with the audience from the first second.</p>
+            </div>
+            <div class="expertise-item">
+                <h3>Research &amp; Content Planning</h3>
+                <p>Understanding the product, service, or brand before creating content, so each design or video feels relevant, purposeful, and audience‑focused.</p>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="right-col">
+            <!-- Empty space so first block aligns with left column's first block after heading+intro -->
+            <div style="height: 1rem;"></div> <!-- subtle spacer, remove if you want precise top alignment -->
+            <div class="expertise-item">
+                <h3>AI Video Production</h3>
+                <p>Producing high‑quality AI‑powered advertisement videos with consistent characters, cinematic visuals, and platform‑ready storytelling.</p>
+            </div>
+            <div class="expertise-item">
+                <h3>Social Media Content Design</h3>
+                <p>Creating high‑impact Facebook and Instagram posts, engagement creatives, and aesthetically structured carousel designs that communicate information with clarity and professionalism.</p>
+            </div>
+            <div class="expertise-item">
+                <h3>Post‑Production &amp; Motion Design</h3>
+                <p>Refining every project through professional editing, motion graphics, voiceover integration, animation, sound design, and final polishing for a seamless viewing experience.</p>
+            </div>
+        </div>
     </div>
-    <footer>Presented by: Muhammad Faisal Khan | Phone: +92-309-9225353 | Email: faisymyk@gmail.com</footer>
+
+    <!-- Footer -->
+    <footer>
+        Presented by: Muhammad Faisal Khan | Phone: +92-309-9225353 | Email: faisymyk@gmail.com
+    </footer>
 </div>
 </body>
 </html>
