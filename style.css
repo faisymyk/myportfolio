@@ -1,4 +1,4 @@
-/* style.css - Black & White Minimal Theme */
+/* style.css - Black & White Minimal Theme (with iframe fix) */
 * {
   margin: 0;
   padding: 0;
@@ -126,20 +126,19 @@ img.profile {
   background: #f8f8f8;
   padding: 1.5rem;
   border: 1px solid #ddd;
-  text-align: center; /* video ko center karne ke liye */
+  text-align: center;
 }
-
-/* 🔥 YEH RAHA FIX: Vertical (9:16) videos ke liye */
-.video-item video {
+/* 🔥 FIX: Instead of .video-item video, we target iframe for Google Drive */
+.video-item iframe {
   display: block;
   max-width: 100%;
-  max-height: 70vh;  /* Screen height ka 70% - poori video dikhegi */
-  height: auto;
-  width: auto;       /* Width automatically adjust hogi ratio ke hisaab se */
+  width: 400px;
+  height: 711px;   /* 9:16 ratio */
+  max-height: 70vh;
   margin: 0 auto 1rem auto;
+  border: none;
   background: #000;
 }
-
 .video-item h4 {
   margin-bottom: 0.2rem;
 }
@@ -153,7 +152,10 @@ img.profile {
   h2 { font-size: 2rem; }
   nav { gap: 0.8rem 1.5rem; font-size: 1rem; }
   .highlight-box { padding: 1rem; }
-  .video-item video {
-    max-height: 50vh; /* Mobile par aur chhoti karo */
+  .video-item iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9/16;
+    max-height: 50vh;
   }
 }
