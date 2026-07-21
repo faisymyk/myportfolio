@@ -18,6 +18,7 @@
         }
         .page-wrap { max-width: 1200px; margin: 0 auto; }
 
+        /* ── Navigation (no logo, right aligned) ── */
         nav {
             display: flex; justify-content: flex-end;
             padding: 1.5rem 0;
@@ -44,19 +45,29 @@
             margin-bottom: 1rem;
         }
 
-        /* ── Unified expertise grid ── */
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
         .intro {
-            grid-column: 1 / -1;   /* intro spans full width */
-            margin-bottom: 1rem;
+            margin-bottom: 3rem;
             color: #444;
             line-height: 1.7;
         }
+
+        /* ── Two‑area layout ── */
+        .expertise-layout {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+        .content-col {
+            flex: 0 0 65%;         /* left column ~65% */
+        }
+        .image-area {
+            flex: 0 0 35%;         /* empty right side for image */
+            /* Placeholder styling – invisible until you add an <img> */
+            min-height: 200px;
+            /* Uncomment the line below if you want a subtle dashed border to see the area */
+            /* border: 1px dashed #ccc; */
+        }
+
         .expertise-item {
             margin-bottom: 2.5rem;
         }
@@ -74,12 +85,15 @@
             line-height: 1.6;
         }
 
+        /* ── Mobile: stack everything ── */
         @media (max-width: 768px) {
-            .expertise-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .expertise-layout {
+                flex-direction: column;
             }
-            .intro { grid-column: auto; }
+            .content-col, .image-area {
+                flex: unset;
+                width: 100%;
+            }
             h2 { font-size: 2.2rem; }
         }
 
@@ -106,13 +120,11 @@
     </nav>
 
     <h2>Core Expertise</h2>
+    <p class="intro">Every project is developed through a strategic creative process that combines research, visual storytelling, AI production, graphic design, and post‑production to deliver high‑quality marketing assets that are ready for real‑world campaigns.</p>
 
-    <div class="expertise-grid">
-        <!-- Intro paragraph spans both columns -->
-        <p class="intro">Every project is developed through a strategic creative process that combines research, visual storytelling, AI production, graphic design, and post‑production to deliver high‑quality marketing assets that are ready for real‑world campaigns.</p>
-
-        <!-- Left column: 3 items -->
-        <div class="left-col">
+    <div class="expertise-layout">
+        <!-- LEFT: All five service blocks in order -->
+        <div class="content-col">
             <div class="expertise-item">
                 <h3>Scriptwriting &amp; Concept Development</h3>
                 <p>Building clear messages, engaging hooks, and ad concepts that connect with the audience from the first second.</p>
@@ -125,10 +137,6 @@
                 <h3>AI Video Production</h3>
                 <p>Producing high‑quality AI‑powered advertisement videos with consistent characters, cinematic visuals, and platform‑ready storytelling.</p>
             </div>
-        </div>
-
-        <!-- Right column: 4 items -->
-        <div class="right-col">
             <div class="expertise-item">
                 <h3>Social Media Content Design</h3>
                 <p>Creating high‑impact Facebook and Instagram posts, engagement creatives, and aesthetically structured carousel designs that communicate information with clarity and professionalism.</p>
@@ -137,14 +145,11 @@
                 <h3>Post‑Production &amp; Motion Design</h3>
                 <p>Refining every project through professional editing, motion graphics, voiceover integration, animation, sound design, and final polishing for a seamless viewing experience.</p>
             </div>
-            <div class="expertise-item">
-                <h3>Marketing‑Focused Content Creation</h3>
-                <p>Combining creative execution with digital marketing principles to produce content that not only looks professional but also supports brand awareness, audience engagement, and business growth.</p>
-            </div>
-            <div class="expertise-item">
-                <h3>Graphic Design &amp; Brand Creatives</h3>
-                <p>Applying keyframe‑based animation and visual timing to make content feel smooth, dynamic, and professional.</p>
-            </div>
+        </div>
+
+        <!-- RIGHT: Empty area reserved for a thin horizontal image -->
+        <div class="image-area">
+            <!-- Future image goes here: <img src="images/your-image.jpg" alt="..."> -->
         </div>
     </div>
 
