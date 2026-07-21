@@ -3,334 +3,455 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Video Creator — Portfolio | Karachi, Pakistan</title>
+    <title>AI Video Creator | Premium Ad Portfolio | Karachi</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,600;0,700;1,700&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,700;1,700&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* ========== BLACK & WHITE MINIMAL THEME (WITH VERTICAL IFRAME FIX) ========== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
-            font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Barlow', sans-serif;
             font-weight: 300;
             font-size: 18px;
             line-height: 1.7;
-            color: #000;
-            background: #fff;
-            padding: 20px;
+            color: #1a1a1a;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* ----- accent ----- */
+        .accent {
+            color: #c9a96e;
+        }
+
+        /* ----- NAVIGATION (dark bar) ----- */
+        .navbar {
+            background: #111;
+            padding: 1rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-family: 'Archivo', sans-serif;
+            font-weight: 700;
+            font-style: italic;
+            font-size: 1.6rem;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+        .logo span {
+            color: #c9a96e;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            transition: 0.2s;
+            padding-bottom: 4px;
+            border-bottom: 1px solid transparent;
+        }
+        .nav-links a:hover {
+            color: #fff;
+            border-bottom-color: #c9a96e;
+        }
+
+        /* ----- HERO ----- */
+        .hero {
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-family: 'Archivo', sans-serif;
+            font-weight: 700;
+            font-style: italic;
+            font-size: clamp(3rem, 8vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: #111;
+        }
+        .hero .tagline {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #444;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero .accent-line {
+            width: 60px;
+            height: 3px;
+            background: #c9a96e;
+            margin: 0 auto 2rem;
+        }
+
+        /* ----- SECTION HEADINGS ----- */
+        .section {
+            padding: 4rem 2rem;
             max-width: 1100px;
             margin: 0 auto;
         }
-
-        h1, h2, h3, h4 {
-            font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+        .section-title {
+            font-family: 'Archivo', sans-serif;
             font-weight: 700;
             font-style: italic;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-            margin-bottom: 0.5rem;
-            color: #000;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: #111;
+            text-align: center;
         }
-        h1 { font-size: 3.5rem; }
-        h2 { font-size: 2.5rem; border-bottom: 2px solid #000; padding-bottom: 0.25rem; margin-top: 2rem; }
-        h3 { font-size: 1.8rem; margin-top: 1.5rem; }
-        h4 { font-size: 1.3rem; font-weight: 600; font-style: normal; }
-
-        p, li {
-            font-weight: 300;
+        .section-subhead {
+            text-align: center;
             font-size: 1.1rem;
-            color: #222;
-            margin-bottom: 1rem;
+            color: #555;
+            margin-bottom: 3rem;
         }
 
-        a {
-            color: #000;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            font-weight: 400;
-        }
-        a:hover {
-            text-decoration: none;
-            background: #000;
-            color: #fff;
-            padding: 0 4px;
-        }
-
-        nav {
+        /* ----- ABOUT ME (brief) ----- */
+        .about-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 1.5rem 2.5rem;
-            padding: 1.5rem 0 2rem 0;
-            border-bottom: 1px solid #ccc;
-            margin-bottom: 2.5rem;
-            font-family: 'Archivo', sans-serif;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        nav a {
-            text-decoration: none;
-            color: #000;
-            background: none;
-            padding: 0;
-            border-bottom: 2px solid transparent;
-            transition: 0.2s;
-        }
-        nav a:hover {
-            background: none;
-            color: #000;
-            border-bottom: 2px solid #000;
-            padding: 0;
-        }
-        nav a.active {
-            border-bottom: 3px solid #000;
-            font-weight: 700;
-        }
-
-        footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid #ccc;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #555;
-        }
-        footer a {
-            color: #000;
-            text-decoration: none;
-            font-weight: 400;
-        }
-        footer a:hover {
-            background: #000;
-            color: #fff;
-            padding: 0 4px;
-        }
-
-        .highlight-box {
-            background: #f5f5f5;
-            padding: 2rem;
-            margin: 2rem 0;
-            border-left: 6px solid #000;
-        }
-
-        .spec-work {
-            opacity: 0.8;
-            border: 1px dashed #888;
-            padding: 1.5rem;
-            margin-top: 3rem;
-            background: #fafafa;
-        }
-        .spec-work h3 { margin-top: 0; }
-
-        img.profile {
-            max-width: 220px;
-            height: auto;
-            border-radius: 50%;
-            margin: 1rem 0 2rem 0;
-            border: 3px solid #000;
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: 1fr;
             gap: 2rem;
-            margin: 2rem 0;
+            align-items: center;
+            justify-content: center;
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
         }
-
-        .video-item {
-            background: #f8f8f8;
-            padding: 1.5rem;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-
-        /* 🔥 Vertical (Instagram) style for Google Drive iframe */
-        .video-item iframe {
-            display: block;
-            width: 400px;
-            height: 711px;        /* 9:16 ratio */
-            max-width: 100%;
-            max-height: 70vh;
-            margin: 0 auto 1rem auto;
-            border: none;
-            background: #000;
-        }
-
-        .video-item h4 {
-            margin-bottom: 0.2rem;
-        }
-        .video-item p {
-            font-size: 0.95rem;
-            color: #333;
-        }
-
-        .client-text-card {
-            background: #f8f8f8;
-            padding: 1.5rem;
-            border: 1px solid #ddd;
+        .about-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: #ddd;
+            border: 3px solid #c9a96e;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            justify-content: center;
+            font-size: 3rem;
+            color: #aaa;
+            flex-shrink: 0;
+        }
+        .about-text {
+            max-width: 500px;
         }
 
-        .contact-grid {
+        /* ----- VIDEO CARDS GRID ----- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+        .video-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            padding: 0 0 1.5rem 0;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards;
+        }
+        .video-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* delay animation for each card */
+        .video-card:nth-child(2) { animation-delay: 0.1s; }
+        .video-card:nth-child(3) { animation-delay: 0.2s; }
+        .video-card:nth-child(4) { animation-delay: 0.3s; }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            aspect-ratio: 9 / 16;
+            background: #000;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .card-title {
+            font-family: 'Archivo', sans-serif;
+            font-weight: 700;
+            font-size: 1.6rem;
+            margin: 1.2rem 0 0.3rem;
+            color: #111;
+        }
+        .card-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+        .badge {
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+        }
+        .badge-verified {
+            background: #111;
+            color: #fff;
+        }
+        .badge-spec {
+            background: #f0f0f0;
+            color: #555;
+            border: 1px solid #ccc;
+        }
+
+        /* ----- SPEC WORK SECTION ----- */
+        .spec-section {
+            background: #f7f7f7;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            position: relative;
+        }
+        .spec-label {
+            font-weight: 600;
+            color: #888;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 0.1em;
+        }
+
+        /* ----- CONTACT ----- */
+        .contact-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1.5rem;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
         }
-        .contact-card {
-            background: #f8f8f8;
-            padding: 1.5rem;
-            border: 1px solid #ddd;
+        .contact-item {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
             text-align: center;
+            transition: all 0.3s;
+        }
+        .contact-item:hover {
+            background: #111;
+            color: #fff;
+        }
+        .contact-item:hover a {
+            color: #c9a96e;
+        }
+        .contact-item a {
+            color: #111;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
         }
 
-        .section-badge {
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+        /* ----- FOOTER ----- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+            color: #777;
+            border-top: 1px solid #eee;
         }
-        .badge-verified { background: #000; color: #fff; }
-        .badge-spec     { background: #555; color: #fff; }
 
-        @media (max-width: 600px) {
-            body { padding: 15px; font-size: 16px; }
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            nav { gap: 0.8rem 1.5rem; font-size: 1rem; }
-            .highlight-box { padding: 1rem; }
-            .video-item iframe {
-                width: 100%;
-                height: auto;
-                aspect-ratio: 9 / 16;
-                max-height: 50vh;
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero {
+                padding: 3rem 1rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .about-row {
+                flex-direction: column;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="#" class="active">Portfolio</a>
-        <a href="#verified">Client Work</a>
-        <a href="#spec">Practice</a>
-        <a href="#contact">Contact</a>
-    </nav>
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav class="navbar">
+    <div class="logo">AI<span>Video</span>Creator</div>
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Client Work</a></li>
+        <li><a href="#spec">Practice</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 
-    <!-- Hero -->
-    <h1>AI Video<br>Creator.</h1>
-    <p style="font-size:1.3rem; font-weight:400;">Based in Karachi, Pakistan.<br>Crafting compelling AI-driven ad videos for brands &amp; businesses.</p>
-    <div style="height:2px; background:#000; width:60px; margin:2rem 0;"></div>
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero" id="home">
+    <h1>Crafting AI Ads<br>That <span class="accent">Convert</span></h1>
+    <p class="tagline">Karachi-based AI video creator for brands & businesses. Specializing in high-impact advertisement content powered by artificial intelligence.</p>
+    <div class="accent-line"></div>
+</header>
 
-    <!-- Verified Client Work -->
-    <h2 id="verified">Real Client Work</h2>
-    <div class="section-badge badge-verified">VERIFIED CLIENT PROJECTS</div>
-    <p>These are actual paid projects delivered for clients. Each video was created using AI-powered workflows.</p>
+<!-- ═══════════ ABOUT ME (BRIEF) ═══════════ -->
+<section class="section" id="about">
+    <div class="about-row">
+        <div class="about-img">👤</div>
+        <div class="about-text">
+            <h3 style="font-family:'Archivo',sans-serif; font-weight:700; font-style:italic; font-size:2rem; margin-bottom:0.5rem;">Hi, I'm Faisy</h3>
+            <p>I blend creative direction with cutting-edge AI tools to produce scroll-stopping video ads. From e-commerce brands to digital academies, I help businesses stand out without the overhead of traditional production.</p>
+            <p style="font-weight:400;"><span class="accent">►</span> Based in Karachi, working worldwide.</p>
+        </div>
+    </div>
+</section>
 
-    <div class="video-grid">
+<!-- ═══════════ VERIFIED CLIENT WORK ═══════════ -->
+<section class="section" id="work">
+    <h2 class="section-title">Real Client Work</h2>
+    <p class="section-subhead">These are actual paid projects delivered for clients. Each ad was created using AI-powered workflows.</p>
+
+    <div class="card-grid">
         <!-- Eureka Academy -->
-        <div class="video-item">
-            <iframe src="https://drive.google.com/file/d/1zM4GOplNVjwrjTiL1pjJJgOqRTJAqAgu/preview"
-                    allow="autoplay; fullscreen"
-                    allowfullscreen
-                    loading="lazy"
-                    title="Eureka - Digital Marketing Academy"></iframe>
-            <h4>Eureka — Digital Marketing Academy</h4>
-            <p><strong>✓ Verified Client</strong> — AI advertisement video</p>
+        <div class="video-card">
+            <div class="iframe-container">
+                <iframe src="https://drive.google.com/file/d/1zM4GOplNVjwrjTiL1pjJJgOqRTJAqAgu/preview"
+                        allow="autoplay; fullscreen" allowfullscreen loading="lazy"
+                        title="Eureka Academy"></iframe>
+            </div>
+            <h3 class="card-title">Eureka Academy</h3>
+            <p class="card-meta">Digital Marketing Academy</p>
+            <span class="badge badge-verified">Verified Client</span>
         </div>
 
         <!-- UCG Boutique -->
-        <div class="video-item">
-            <iframe src="https://drive.google.com/file/d/1XsmHja0G9M9LBOtP04QVS_QGQ1FUDe14/preview"
-                    allow="autoplay; fullscreen"
-                    allowfullscreen
-                    loading="lazy"
-                    title="UCG Boutique"></iframe>
-            <h4>UCG Boutique</h4>
-            <p><strong>✓ Verified Client</strong> — AI advertisement video</p>
+        <div class="video-card">
+            <div class="iframe-container">
+                <iframe src="https://drive.google.com/file/d/1XsmHja0G9M9LBOtP04QVS_QGQ1FUDe14/preview"
+                        allow="autoplay; fullscreen" allowfullscreen loading="lazy"
+                        title="UCG Boutique"></iframe>
+            </div>
+            <h3 class="card-title">UCG Boutique</h3>
+            <p class="card-meta">Fashion Retail Brand</p>
+            <span class="badge badge-verified">Verified Client</span>
         </div>
 
         <!-- Eureka Mug -->
-        <div class="video-item">
-            <iframe src="https://drive.google.com/file/d/1snnyZPGiIItJXpftikmZb4Fodq-iV3m_/preview"
-                    allow="autoplay; fullscreen"
-                    allowfullscreen
-                    loading="lazy"
-                    title="Eureka Mug"></iframe>
-            <h4>Eureka Mug</h4>
-            <p><strong>✓ Verified Client</strong> — Smart temperature-controlled mug (US-based brand)</p>
+        <div class="video-card">
+            <div class="iframe-container">
+                <iframe src="https://drive.google.com/file/d/1snnyZPGiIItJXpftikmZb4Fodq-iV3m_/preview"
+                        allow="autoplay; fullscreen" allowfullscreen loading="lazy"
+                        title="Eureka Mug"></iframe>
+            </div>
+            <h3 class="card-title">Eureka Mug</h3>
+            <p class="card-meta">Smart Temperature Mug (US Brand)</p>
+            <span class="badge badge-verified">Verified Client</span>
         </div>
 
-        <!-- Journey with Munazza Khan (text only) -->
-        <div class="client-text-card">
-            <div style="font-size:2rem;">📋</div>
+        <!-- Munazza Khan (text only) -->
+        <div class="video-card" style="padding:2rem; display:flex; align-items:center; gap:1rem; justify-content:center; flex-direction:row; background:#fafafa;">
+            <span style="font-size:2.5rem;">📋</span>
             <div>
-                <h4 style="margin:0;">Journey with Munazza Khan</h4>
-                <p style="margin:0;">Verified client — video not included in this portfolio batch</p>
+                <h3 class="card-title" style="margin:0;">Journey with Munazza Khan</h3>
+                <p class="card-meta" style="margin:0;">Verified Client – video not included in this batch</p>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Spec / Practice Work -->
-    <div class="spec-work" id="spec">
-        <h2>Practice &amp; Spec Ad Work</h2>
-        <div class="section-badge badge-spec">⚠ SPEC WORK — NOT PAID PROJECTS</div>
-        <p><strong>Important:</strong> The work below is self-initiated practice or speculative ad concepts. These were not commissioned or paid for by the brands shown.</p>
+<!-- ═══════════ SPEC / PRACTICE WORK ═══════════ -->
+<section class="section spec-section" id="spec">
+    <h2 class="section-title" style="font-size:2.2rem;">Practice & Spec Ads</h2>
+    <p class="spec-label">⚠ These are self-initiated projects for demonstration only – not commissioned by the brands.</p>
 
-        <div class="video-grid">
-            <!-- Pediasure -->
-            <div class="video-item">
+    <div class="card-grid">
+        <!-- Pediasure -->
+        <div class="video-card">
+            <div class="iframe-container">
                 <iframe src="https://drive.google.com/file/d/1FL9r0bDm_ucVvpAEPTzpnP5_E3aPMStU/preview"
-                        allow="autoplay; fullscreen"
-                        allowfullscreen
-                        loading="lazy"
-                        title="Pediasure - Spec Ad"></iframe>
-                <h4>Pediasure</h4>
-                <p><strong>⚠ Spec Work</strong> — Practice AI advertisement</p>
+                        allow="autoplay; fullscreen" allowfullscreen loading="lazy"
+                        title="Pediasure Spec"></iframe>
             </div>
+            <h3 class="card-title">Pediasure</h3>
+            <p class="card-meta">Speculative Ad Concept</p>
+            <span class="badge badge-spec">Spec Work</span>
+        </div>
 
-            <!-- Vaseline -->
-            <div class="video-item">
+        <!-- Vaseline -->
+        <div class="video-card">
+            <div class="iframe-container">
                 <iframe src="https://drive.google.com/file/d/1HpPwQMP4RrerBCDMLMA_0_SVhhs_oCb0/preview"
-                        allow="autoplay; fullscreen"
-                        allowfullscreen
-                        loading="lazy"
-                        title="Vaseline - Spec Ad"></iframe>
-                <h4>Vaseline</h4>
-                <p><strong>⚠ Spec Work</strong> — Practice AI advertisement</p>
+                        allow="autoplay; fullscreen" allowfullscreen loading="lazy"
+                        title="Vaseline Spec"></iframe>
             </div>
+            <h3 class="card-title">Vaseline</h3>
+            <p class="card-meta">Speculative Ad Concept</p>
+            <span class="badge badge-spec">Spec Work</span>
         </div>
     </div>
+</section>
 
-    <!-- Contact -->
-    <h2 id="contact">Get in Touch</h2>
-    <p>Available for freelance AI video advertisement projects. Reach out to discuss your brand's next campaign.</p>
-    <div class="contact-grid">
-        <div class="contact-card">
-            <strong>Email</strong><br>
+<!-- ═══════════ CONTACT ═══════════ -->
+<section class="section" id="contact">
+    <h2 class="section-title">Let's Work Together</h2>
+    <p class="section-subhead">I'm available for freelance projects. Let's discuss how AI video ads can elevate your brand.</p>
+
+    <div class="contact-cards">
+        <div class="contact-item">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">📧</div>
             <a href="mailto:faisymyk@gmail.com">faisymyk@gmail.com</a>
         </div>
-        <div class="contact-card">
-            <strong>Phone / WhatsApp</strong><br>
+        <div class="contact-item">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">📱</div>
             <a href="tel:+923099225353">+92-309-9225353</a>
         </div>
-        <div class="contact-card">
-            <strong>Location</strong><br>
-            Karachi, Pakistan
+        <div class="contact-item">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">📍</div>
+            <span>Karachi, Pakistan</span>
         </div>
     </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        &copy; 2026 — AI Video Creator Portfolio. Karachi, Pakistan.
-    </footer>
+<footer>
+    © 2026 — AI Video Creator. Designed in Karachi, for the world.
+</footer>
 
 </body>
 </html>
