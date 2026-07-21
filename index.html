@@ -13,121 +13,92 @@
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family: 'Barlow', sans-serif;
-            font-weight: 100;
-            font-size: 18px;
-            line-height: 1.7;
-            color: #000;
-            background: #fff;
-            padding: 20px;
-            max-width: 1100px;
+            font-weight: 100; font-size: 18px;
+            line-height: 1.7; color: #000;
+            background: #fff; padding: 20px;
             margin: 0 auto;
         }
         h1, h2, h3, .logo {
             font-family: 'Archivo', sans-serif;
-            font-weight: 700;
-            font-style: italic;
+            font-weight: 700; font-style: italic;
         }
+        .page-wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Nav */
         nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; flex-wrap: wrap;
+            justify-content: space-between; align-items: center;
             padding: 1.5rem 0;
             border-bottom: 1px solid #000;
             margin-bottom: 2rem;
         }
-        .logo {
-            font-size: 1.8rem;
-            color: #000;
-            text-decoration: none;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
+        .logo { font-size: 1.8rem; color: #000; text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-links a {
-            text-decoration: none;
-            color: #000;
-            font-weight: 400;
-            font-size: 1rem;
-            padding-bottom: 4px;
+            text-decoration: none; color: #000; font-weight: 400;
+            font-size: 0.95rem; letter-spacing: 0.7px; text-transform: uppercase;
+            padding-bottom: 6px;
             border-bottom: 2px solid transparent;
             transition: 0.2s;
         }
-        .nav-links a:hover,
-        .nav-links a.active {
-            border-bottom-color: #000;
-            font-weight: 700;
-        }
-        footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid #000;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #000;
-            font-weight: 300;
-        }
+        .nav-links a:hover, .nav-links a.active { border-bottom: 2px solid #000; font-weight: 600; }
+
+        /* Hero */
         .home-hero {
-            text-align: center;
-            padding: 5rem 0 4rem;
+            text-align: center; padding: 5rem 0 4rem;
         }
         .home-hero .small-text {
-            font-size: 1rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
+            font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase;
+            font-weight: 400; margin-bottom: 0.5rem;
         }
         .home-hero h1 {
             font-size: clamp(3rem, 8vw, 6rem);
-            line-height: 1.1;
-            margin-bottom: 2rem;
+            line-height: 1.1; margin-bottom: 2rem;
         }
         .home-bottom {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            font-size: 0.95rem;
-            font-weight: 300;
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 2rem; font-size: 0.95rem; font-weight: 300;
+        }
+        footer {
+            margin-top: 4rem; padding-top: 2rem;
+            border-top: 1px solid #000;
+            text-align: center; font-size: 0.9rem; font-weight: 300;
         }
         @media (max-width: 600px) {
             body { font-size: 16px; }
-            .nav-links { gap: 1rem; font-size: 0.9rem; }
+            .nav-links { gap: 1.2rem; font-size: 0.85rem; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="logo">MF.</a>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="education.html">Education</a></li>
-            <li><a href="expertise.html">Expertise</a></li>
-            <li><a href="experience.html">Work</a></li>
-            <li><a href="portfolio.html">Videos</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+    <div class="page-wrap">
+        <nav>
+            <a href="index.html" class="logo">MF.</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="expertise.html">Expertise</a></li>
+                <li><a href="experience.html">Work</a></li>
+                <li><a href="portfolio.html">Videos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
 
-    <main class="home-hero">
-        <p class="small-text">Creative Presentation</p>
-        <h1>Creative<br>Portfolio</h1>
-    </main>
+        <main class="home-hero">
+            <p class="small-text">Creative Presentation</p>
+            <h1>Creative<br>Portfolio</h1>
+        </main>
 
-    <div class="home-bottom">
-        <span>Presented by: Muhammad Faisal Khan</span>
-        <span>Phone: +92-309-9225353</span>
-        <span>Email: faisymyk@gmail.com</span>
+        <div class="home-bottom">
+            <span>Presented by: Muhammad Faisal Khan</span>
+            <span>Phone: +92-309-9225353</span>
+            <span>Email: faisymyk@gmail.com</span>
+        </div>
+
+        <footer>
+            Presented by: Muhammad Faisal Khan | Phone: +92-309-9225353 | Email: faisymyk@gmail.com
+        </footer>
     </div>
-
-    <footer>
-        Presented by: Muhammad Faisal Khan | Phone: +92-309-9225353 | Email: faisymyk@gmail.com
-    </footer>
 </body>
 </html>
-
-
