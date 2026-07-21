@@ -10,18 +10,116 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Barlow',sans-serif; font-weight:100; font-size:18px; color:#000; background:#fff; padding:20px; max-width:1100px; margin:0 auto; }
-        h1,h2,h3,.logo { font-family:'Archivo',sans-serif; font-weight:700; font-style:italic; }
-        nav { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:1.5rem 0; border-bottom:1px solid #000; margin-bottom:2rem; }
-        .logo { font-size:1.8rem; color:#000; text-decoration:none; }
-        .nav-links { display:flex; gap:2rem; list-style:none; }
-        .nav-links a { text-decoration:none; color:#000; font-weight:400; font-size:1rem; padding-bottom:4px; border-bottom:2px solid transparent; }
-        .nav-links a:hover, .nav-links a.active { border-bottom-color:#000; font-weight:700; }
-        footer { margin-top:4rem; padding-top:2rem; border-top:1px solid #000; text-align:center; font-size:0.9rem; font-weight:300; }
-        .project { margin-bottom:3rem; border-bottom:1px dashed #000; padding-bottom:2rem; }
-        .project iframe { width:100%; max-width:400px; height:auto; aspect-ratio:9/16; display:block; margin:1rem auto; border:1px solid #000; }
-        .spec-section { margin-top:4rem; border-top:2px solid #000; padding-top:2rem; }
-        @media(max-width:600px){ body{font-size:16px;} }
+        body {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 100;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #000;
+            background: #fff;
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        h1, h2, h3, .logo {
+            font-family: 'Archivo', sans-serif;
+            font-weight: 700;
+            font-style: italic;
+        }
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #000;
+            margin-bottom: 2rem;
+        }
+        .logo { font-size: 1.8rem; color: #000; text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 400;
+            font-size: 1rem;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active { border-bottom-color: #000; font-weight: 700; }
+        footer {
+            margin-top: 4rem; padding-top: 2rem;
+            border-top: 1px solid #000;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+        .project {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px dashed #000;
+        }
+        .watch-btn {
+            display: inline-block;
+            margin-top: 0.8rem;
+            border: 1px solid #000;
+            padding: 0.5rem 1.5rem;
+            text-decoration: none;
+            color: #000;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+            background: #fff;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .watch-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+        .spec-section {
+            margin-top: 4rem;
+            border-top: 2px solid #000;
+            padding-top: 2rem;
+        }
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox-content {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            aspect-ratio: 9/16;
+            background: #000;
+        }
+        .lightbox-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .close-lightbox {
+            position: absolute;
+            top: -2rem;
+            right: -1rem;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+        }
     </style>
 </head>
 <body>
@@ -41,26 +139,23 @@
     <h2>My Work Experience</h2>
     <p>A summary of the projects and platforms I've worked with, combining AI‑driven ad campaigns with independent content creation.</p>
 
-    <!-- Project 1: Horror Channel (no video provided yet) -->
+    <!-- Project 1: Horror Channel (no video provided, so no button) -->
     <div class="project">
         <h3>Horror Storytelling Channel</h3>
         <p>Built and manage an Urdu‑language YouTube channel using AI‑generated scenes with a character consistency system across multi‑scene stories.</p>
-        <!-- Placeholder for video/thumbnail -->
-        <!-- <iframe src="DRIVE_ID/preview" allowfullscreen></iframe> -->
     </div>
 
     <!-- Project 2: UCG Boutique -->
     <div class="project">
         <h3>UCG Boutique</h3>
         <p>Created Instagram promotional reels using AI‑generated visuals, Urdu dialogue, and clear calls‑to‑action.</p>
-        <iframe src="https://drive.google.com/file/d/1XsmHja0G9M9LBOtP04QVS_QGQ1FUDe14/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+        <button class="watch-btn" onclick="openLightbox('1XsmHja0G9M9LBOtP04QVS_QGQ1FUDe14')">▶ Watch Video</button>
     </div>
 
     <!-- Project 3: YouTube Channel Editing -->
     <div class="project">
         <h3>YouTube Channel Editing</h3>
         <p>Edited a full range of YouTube videos for an independent content creator, including chroma key compositing, audio cleanup and mixing, subtitles/captions, on‑screen subscribe button overlays, and custom thumbnail design — primarily using Filmora.</p>
-        <!-- Thumbnail image if available -->
     </div>
 
     <!-- Project 4: Additional Editing Experience -->
@@ -73,14 +168,14 @@
     <div class="project">
         <h3>Eureka Digital Marketing Academy</h3>
         <p>Produced a video marketing campaign for their Digital Marketing Certification program — combining AI‑generated visuals with hands‑on editing, voiceover integration, and a hybrid production format.</p>
-        <iframe src="https://drive.google.com/file/d/1zM4GOplNVjwrjTiL1pjJJgOqRTJAqAgu/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+        <button class="watch-btn" onclick="openLightbox('1zM4GOplNVjwrjTiL1pjJJgOqRTJAqAgu')">▶ Watch Video</button>
     </div>
 
     <!-- Project 6: Eureka Mug -->
     <div class="project">
         <h3>Eureka Mug (USA)</h3>
         <p>Produced a promotional campaign for this smart, temperature‑display mug brand, combining AI‑generated visuals with hands‑on video editing, voiceover direction, and keyframe‑based motion work.</p>
-        <iframe src="https://drive.google.com/file/d/1snnyZPGiIItJXpftikmZb4Fodq-iV3m_/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+        <button class="watch-btn" onclick="openLightbox('1snnyZPGiIItJXpftikmZb4Fodq-iV3m_')">▶ Watch Video</button>
     </div>
 
     <!-- SPEC SECTION -->
@@ -90,16 +185,46 @@
 
         <div class="project">
             <h3>Pediasure (spec ad)</h3>
-            <iframe src="https://drive.google.com/file/d/1FL9r0bDm_ucVvpAEPTzpnP5_E3aPMStU/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+            <button class="watch-btn" onclick="openLightbox('1FL9r0bDm_ucVvpAEPTzpnP5_E3aPMStU')">▶ Watch Video</button>
         </div>
         <div class="project">
             <h3>Vaseline (spec ad)</h3>
-            <iframe src="https://drive.google.com/file/d/1HpPwQMP4RrerBCDMLMA_0_SVhhs_oCb0/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+            <button class="watch-btn" onclick="openLightbox('1HpPwQMP4RrerBCDMLMA_0_SVhhs_oCb0')">▶ Watch Video</button>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="close-lightbox" id="closeLightbox">&times;</button>
+            <iframe id="lightboxIframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
         </div>
     </div>
 
     <footer>
         Presented by: Muhammad Faisal Khan | Phone: +92-309-9225353 | Email: faisymyk@gmail.com
     </footer>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxIframe = document.getElementById('lightboxIframe');
+        const closeBtn = document.getElementById('closeLightbox');
+
+        function openLightbox(fileId) {
+            lightboxIframe.src = `https://drive.google.com/file/d/${fileId}/preview`;
+            lightbox.classList.add('active');
+        }
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            lightboxIframe.src = '';
+        });
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                lightboxIframe.src = '';
+            }
+        });
+    </script>
 </body>
 </html>
