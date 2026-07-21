@@ -10,33 +10,191 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Barlow',sans-serif; font-weight:100; font-size:18px; color:#000; background:#fff; padding:20px; }
-        .page-wrap { max-width:1200px; margin:0 auto; }
-        nav { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:1.5rem 0; border-bottom:1px solid #000; margin-bottom:2rem; }
-        .logo { font-family:'Archivo',sans-serif; font-weight:700; font-style:italic; font-size:1.8rem; color:#000; text-decoration:none; }
-        .nav-links { display:flex; gap:2.5rem; list-style:none; }
-        .nav-links a { text-decoration:none; color:#000; font-weight:400; font-size:0.95rem; letter-spacing:0.7px; text-transform:uppercase; padding-bottom:6px; border-bottom:2px solid transparent; transition:0.2s; }
-        .nav-links a:hover, .nav-links a.active { border-bottom:2px solid #000; font-weight:600; }
-        h2 { font-family:'Archivo',sans-serif; font-weight:700; font-style:italic; font-size:2.5rem; border-bottom:2px solid #000; padding-bottom:0.25rem; margin-bottom:1.5rem; }
-        .page-header { margin-bottom:48px; }
-        .video-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:24px; }
-        .video-card { position:relative; cursor:pointer; background:#000; border-radius:4px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.08); transition:transform 0.25s, box-shadow 0.25s; }
-        .video-card:hover { transform:scale(1.03); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
-        .video-card img { width:100%; height:100%; object-fit:cover; display:block; }
-        .play-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.25); display:flex; align-items:center; justify-content:center; transition:background 0.25s; }
-        .video-card:hover .play-overlay { background:rgba(0,0,0,0.4); }
-        .play-icon { width:0; height:0; border-left:28px solid #fff; border-top:16px solid transparent; border-bottom:16px solid transparent; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.5)); }
-        .card-title { text-align:center; margin-top:0.6rem; font-size:0.75rem; font-weight:500; letter-spacing:1px; text-transform:uppercase; color:#666; }
-        .lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); backdrop-filter:blur(6px); z-index:999; align-items:center; justify-content:center; }
-        .lightbox.active { display:flex; }
-        .lightbox-container { position:relative; background:#000; box-shadow:0 20px 60px rgba(0,0,0,0.5); border-radius:6px; overflow:hidden; }
-        .lightbox-container iframe { width:100%; height:100%; border:none; }
-        .lightbox-close { position:absolute; top:-40px; right:-10px; width:40px; height:40px; background:#fff; color:#000; border:1px solid #000; border-radius:50%; font-size:1.5rem; cursor:pointer; display:flex; align-items:center; justify-content:center; }
-        footer { margin-top:4rem; padding-top:2rem; border-top:1px solid #000; text-align:center; font-size:0.9rem; }
+        body {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 100; font-size: 18px;
+            color: #000; background: #fff;
+            padding: 20px;
+        }
+        .page-wrap { max-width: 1200px; margin: 0 auto; }
+
+        /* Navigation (same as other pages) */
+        nav {
+            display: flex; flex-wrap: wrap;
+            justify-content: space-between; align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #000;
+            margin-bottom: 2rem;
+        }
+        .logo {
+            font-family: 'Archivo', sans-serif;
+            font-weight: 700; font-style: italic;
+            font-size: 1.8rem; color: #000;
+            text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: #000; font-weight: 400;
+            font-size: 0.95rem; letter-spacing: 0.7px;
+            text-transform: uppercase;
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            border-bottom: 2px solid #000; font-weight: 600;
+        }
+
+        h2 {
+            font-family: 'Archivo', sans-serif;
+            font-weight: 700; font-style: italic;
+            font-size: 2.5rem;
+            border-bottom: 2px solid #000;
+            padding-bottom: 0.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header {
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        .section-header:first-of-type {
+            margin-top: 1rem;
+        }
+
+        /* Grid for each category */
+        .video-grid {
+            display: grid;
+            gap: 24px;
+            margin-bottom: 3rem;
+        }
+        /* Vertical videos: 2 columns on mobile, up to 4 on desktop */
+        .vertical-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (min-width: 768px) {
+            .vertical-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        /* Horizontal videos: 1 column on mobile, up to 3 on desktop */
+        .horizontal-grid {
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 600px) {
+            .horizontal-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 900px) {
+            .horizontal-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* Card styling (consistent aspect ratio set by category) */
+        .video-card {
+            position: relative; cursor: pointer;
+            background: #000; border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.25s, box-shadow 0.25s;
+            /* aspect-ratio is set inline by JS per category */
+        }
+        .video-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .video-card img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+        }
+        .play-overlay {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.25);
+            display: flex; align-items: center;
+            justify-content: center;
+            transition: background 0.25s;
+        }
+        .video-card:hover .play-overlay {
+            background: rgba(0,0,0,0.4);
+        }
+        .play-icon {
+            width: 0; height: 0;
+            border-left: 28px solid #fff;
+            border-top: 16px solid transparent;
+            border-bottom: 16px solid transparent;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+        }
+        .card-title {
+            text-align: center;
+            margin-top: 0.6rem;
+            font-size: 0.75rem; font-weight: 500;
+            letter-spacing: 1px; text-transform: uppercase;
+            color: #666;
+        }
+
+        /* Lightbox with top navigation bar */
+        .lightbox {
+            display: none;
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(6px);
+            z-index: 999;
+            align-items: center; justify-content: center;
+            flex-direction: column;
+        }
+        .lightbox.active { display: flex; }
+
+        .lightbox-header {
+            width: 90%;
+            max-width: 960px;
+            display: flex; justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .back-btn, .lightbox-close {
+            background: none; border: none;
+            color: #fff; font-size: 1.2rem;
+            cursor: pointer; padding: 0.5rem 1rem;
+            display: flex; align-items: center; gap: 0.5rem;
+            transition: opacity 0.2s;
+        }
+        .back-btn:hover, .lightbox-close:hover {
+            opacity: 0.8;
+        }
+        .back-arrow {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .lightbox-content {
+            width: 90%;
+            background: #000;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border-radius: 6px; overflow: hidden;
+            position: relative;
+        }
+        .lightbox-content iframe {
+            width: 100%; height: 100%;
+            border: none; display: block;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .lightbox-header { width: 96%; }
+            .lightbox-content { width: 96%; }
+            .back-btn, .lightbox-close { font-size: 1rem; }
+        }
+
+        footer {
+            margin-top: 4rem; padding-top: 2rem;
+            border-top: 1px solid #000;
+            text-align: center; font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
 <div class="page-wrap">
+    <!-- Navigation -->
     <nav>
         <a href="index.html" class="logo">MF.</a>
         <ul class="nav-links">
@@ -49,77 +207,162 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
+
+    <!-- Page Title -->
     <div class="page-header">
         <h2>All My Work</h2>
         <p style="color:#555;">A complete look at the video work I've produced — scroll and watch.</p>
     </div>
-    <div class="video-grid" id="videoGrid"></div>
+
+    <!-- Vertical Ads Section -->
+    <div class="section-header">
+        <h3 style="font-family:'Archivo',sans-serif; font-weight:700; font-style:italic; font-size:1.8rem;">📱 Vertical Ads</h3>
+    </div>
+    <div class="video-grid vertical-grid" id="verticalGrid"></div>
+
+    <!-- Horizontal Ads Section -->
+    <div class="section-header">
+        <h3 style="font-family:'Archivo',sans-serif; font-weight:700; font-style:italic; font-size:1.8rem;">🖥️ Horizontal Ads</h3>
+    </div>
+    <div class="video-grid horizontal-grid" id="horizontalGrid"></div>
+
+    <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
-        <div class="lightbox-container" id="lightboxContainer">
-            <button class="lightbox-close" id="closeLightbox">&times;</button>
+        <div class="lightbox-header">
+            <button class="back-btn" id="lightboxBack">
+                <span class="back-arrow">←</span> Back
+            </button>
+            <button class="lightbox-close" id="lightboxClose">✕</button>
+        </div>
+        <div class="lightbox-content" id="lightboxContent">
             <iframe id="lightboxIframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
         </div>
     </div>
-    <footer>Presented by: Muhammad Faisal Khan | Phone: +92-309-9225353 | Email: faisymyk@gmail.com</footer>
-</div>
-<script>
-    const videos = [
-        { title:"Eureka Academy", fileId:"1zM4GOplNVjwrjTiL1pjJJgOqRTJAqAgu", thumb:"images/thumb-eureka-academy.jpg", spec:false, aspect:"16:9" },
-        { title:"UCG Boutique", fileId:"1XsmHja0G9M9LBOtP04QVS_QGQ1FUDe14", thumb:"images/thumb-ucg.jpg", spec:false, aspect:"9:16" },
-        { title:"Eureka Mug", fileId:"1snnyZPGiIItJXpftikmZb4Fodq-iV3m_", thumb:"images/thumb-eureka-mug.jpg", spec:false, aspect:"9:16" },
-        { title:"Pediasure", fileId:"1FL9r0bDm_ucVvpAEPTzpnP5_E3aPMStU", thumb:"images/thumb-pediasure.jpg", spec:true, aspect:"16:9" },
-        { title:"Vaseline", fileId:"1HpPwQMP4RrerBCDMLMA_0_SVhhs_oCb0", thumb:"images/thumb-vaseline.jpg", spec:true, aspect:"16:9" }
-    ];
-    const grid = document.getElementById('videoGrid');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxContainer = document.getElementById('lightboxContainer');
-    const lightboxIframe = document.getElementById('lightboxIframe');
-    const closeBtn = document.getElementById('closeLightbox');
 
-    function createCard(video) {
+    <footer>
+        Presented by: Muhammad Faisal Khan | Phone: +92-309-9225353 | Email: faisymyk@gmail.com
+    </footer>
+</div>
+
+<script>
+    // Data separated into vertical and horizontal
+    const verticalVideos = [
+        { title:"UCG Boutique", fileId:"1XsmHja0G9M9LBOtP04QVS_QGQ1FUDe14", thumb:"images/thumb-ucg.jpg", spec:false },
+        { title:"Eureka Mug", fileId:"1snnyZPGiIItJXpftikmZb4Fodq-iV3m_", thumb:"images/thumb-eureka-mug.jpg", spec:false }
+    ];
+
+    const horizontalVideos = [
+        { title:"Eureka Academy", fileId:"1zM4GOplNVjwrjTiL1pjJJgOqRTJAqAgu", thumb:"images/thumb-eureka-academy.jpg", spec:false },
+        { title:"Pediasure (spec)", fileId:"1FL9r0bDm_ucVvpAEPTzpnP5_E3aPMStU", thumb:"images/thumb-pediasure.jpg", spec:true },
+        { title:"Vaseline (spec)", fileId:"1HpPwQMP4RrerBCDMLMA_0_SVhhs_oCb0", thumb:"images/thumb-vaseline.jpg", spec:true }
+    ];
+
+    const verticalGrid = document.getElementById('verticalGrid');
+    const horizontalGrid = document.getElementById('horizontalGrid');
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightboxContent');
+    const lightboxIframe = document.getElementById('lightboxIframe');
+    const lightboxBack = document.getElementById('lightboxBack');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    function createCard(video, aspect) {
         const card = document.createElement('div');
         card.className = 'video-card';
-        card.style.aspectRatio = video.aspect;
+        // Lock aspect ratio for the whole category
+        card.style.aspectRatio = aspect;   // "9/16" or "16/9"
+
         const img = document.createElement('img');
         img.src = video.thumb;
         img.alt = video.title;
         img.loading = 'lazy';
+
         const overlay = document.createElement('div');
         overlay.className = 'play-overlay';
         const playIcon = document.createElement('div');
         playIcon.className = 'play-icon';
         overlay.appendChild(playIcon);
+
         card.appendChild(img);
         card.appendChild(overlay);
-        card.addEventListener('click', () => openLightbox(video.fileId, video.aspect));
+
+        card.addEventListener('click', () => openLightbox(video.fileId, aspect));
+
         const titleEl = document.createElement('p');
         titleEl.className = 'card-title';
         titleEl.textContent = video.title + (video.spec ? ' (spec)' : '');
+
         const wrapper = document.createElement('div');
         wrapper.appendChild(card);
         wrapper.appendChild(titleEl);
         return wrapper;
     }
 
+    // Populate vertical grid (all cards aspect ratio 9/16)
+    verticalVideos.forEach(v => verticalGrid.appendChild(createCard(v, '9/16')));
+
+    // Populate horizontal grid (all cards aspect ratio 16/9)
+    horizontalVideos.forEach(v => horizontalGrid.appendChild(createCard(v, '16/9')));
+
+    // ----- Lightbox with history support -----
+    let currentVideoAspect = null;
+    let lightboxHistoryState = false;
+
     function openLightbox(fileId, aspect) {
         lightboxIframe.src = `https://drive.google.com/file/d/${fileId}/preview`;
-        if (aspect === "16:9") {
-            lightboxContainer.style.width = "90%";
-            lightboxContainer.style.maxWidth = "960px";
-            lightboxContainer.style.aspectRatio = "16 / 9";
-        } else {
-            lightboxContainer.style.width = "90%";
-            lightboxContainer.style.maxWidth = "400px";
-            lightboxContainer.style.aspectRatio = "9 / 16";
-        }
-        lightbox.classList.add('active');
-    }
-    function closeLightboxFn() { lightbox.classList.remove('active'); lightboxIframe.src = ''; }
-    closeBtn.addEventListener('click', closeLightboxFn);
-    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightboxFn(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightboxFn(); });
+        currentVideoAspect = aspect;
 
-    videos.forEach(v => grid.appendChild(createCard(v)));
+        // Set lightbox content size according to aspect
+        if (aspect === '16/9') {
+            lightboxContent.style.maxWidth = '960px';
+            lightboxContent.style.aspectRatio = '16 / 9';
+            // header max-width matches
+            document.querySelector('.lightbox-header').style.maxWidth = '960px';
+        } else {
+            lightboxContent.style.maxWidth = '400px';
+            lightboxContent.style.aspectRatio = '9 / 16';
+            document.querySelector('.lightbox-header').style.maxWidth = '400px';
+        }
+
+        lightbox.classList.add('active');
+
+        // Push a history state so browser back button closes the lightbox
+        if (!lightboxHistoryState) {
+            history.pushState({ lightboxOpen: true }, '', '#video');
+            lightboxHistoryState = true;
+        }
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightboxIframe.src = '';
+        if (lightboxHistoryState) {
+            history.back();  // removes the state we pushed
+            lightboxHistoryState = false;
+        }
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxBack.addEventListener('click', closeLightbox);
+
+    // Close when clicking outside the content (on the dark background)
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // Close with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            closeLightbox();
+        }
+    });
+
+    // Handle browser back button
+    window.addEventListener('popstate', (e) => {
+        if (lightbox.classList.contains('active')) {
+            closeLightbox();
+        }
+    });
 </script>
 </body>
 </html>
