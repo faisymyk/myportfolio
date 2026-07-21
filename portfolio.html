@@ -14,12 +14,17 @@
             font-family: 'Barlow', sans-serif;
             font-weight: 100; font-size: 18px;
             color: #000; background: #fff;
-            padding: 20px; max-width: 1100px; margin: 0 auto;
+            padding: 20px; margin: 0 auto;
         }
         h1, h2, h3, .logo {
             font-family: 'Archivo', sans-serif;
             font-weight: 700; font-style: italic;
         }
+        /* Universal container */
+        .page-wrap {
+            max-width: 1200px; margin: 0 auto; padding: 0 20px;
+        }
+        /* ---------- NAV BAR (apply site‑wide) ---------- */
         nav {
             display: flex; flex-wrap: wrap;
             justify-content: space-between; align-items: center;
@@ -28,124 +33,148 @@
             margin-bottom: 2rem;
         }
         .logo { font-size: 1.8rem; color: #000; text-decoration: none; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-links a {
             text-decoration: none; color: #000; font-weight: 400;
-            font-size: 1rem; padding-bottom: 4px;
+            font-size: 0.95rem; letter-spacing: 0.7px; text-transform: uppercase;
+            padding-bottom: 6px;
             border-bottom: 2px solid transparent;
             transition: 0.2s;
         }
-        .nav-links a:hover, .nav-links a.active { border-bottom-color: #000; font-weight: 700; }
-        footer {
-            margin-top: 4rem; padding-top: 2rem;
-            border-top: 1px solid #000;
-            text-align: center; font-size: 0.9rem; font-weight: 300;
+        .nav-links a:hover, .nav-links a.active { border-bottom: 2px solid #000; font-weight: 600; }
+
+        /* ---------- PAGE HEADING SPACING ---------- */
+        .page-header {
+            margin-bottom: 48px;
+        }
+        .page-header h2 {
+            font-size: 2.5rem; border-bottom: 2px solid #000;
+            padding-bottom: 0.25rem; margin-bottom: 0.75rem;
         }
 
-        /* Grid */
+        /* ---------- VIDEO GRID ---------- */
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1.5rem; margin-top: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 3rem;
         }
+        @media (min-width: 768px) {
+            .video-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        /* Card locked to 9:16 */
         .video-card {
             position: relative; cursor: pointer;
-            background: #000; border: 1px solid #000;
+            background: #000; border-radius: 4px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 4px;
-            /* aspect-ratio now set inline by JS to match video */
+            aspect-ratio: 9 / 16;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-        .video-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
+        .video-card:hover { transform: scale(1.03); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
         .video-card img {
             width: 100%; height: 100%; object-fit: cover; display: block;
         }
-        .video-card .fallback-play {
-            position: absolute; top:0; left:0; width:100%; height:100%;
+
+        /* Play overlay */
+        .video-card .play-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.25);
             display: flex; align-items: center; justify-content: center;
-            background: #000; color: #fff; font-size: 3rem; opacity: 0.7;
+            transition: background 0.25s;
         }
+        .video-card:hover .play-overlay { background: rgba(0,0,0,0.4); }
+        .play-icon {
+            width: 0; height: 0;
+            border-left: 28px solid #fff;
+            border-top: 16px solid transparent;
+            border-bottom: 16px solid transparent;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+            transition: transform 0.25s;
+        }
+        .video-card:hover .play-icon { transform: scale(1.1); }
+
+        /* Card label */
         .card-title {
-            text-align: center; font-size: 0.9rem; margin-top: 0.3rem;
-            font-weight: 400; letter-spacing: 0.02em;
+            text-align: center; margin-top: 0.6rem;
+            font-size: 0.75rem; font-weight: 500;
+            letter-spacing: 1px; text-transform: uppercase;
+            color: #666;
         }
 
-        /* Lightbox */
+        /* ---------- LIGHTBOX (unchanged, still adaptive) ---------- */
         .lightbox {
             display: none; position: fixed; top:0; left:0; width:100%; height:100%;
             background: rgba(0,0,0,0.92); backdrop-filter: blur(6px);
             z-index: 999; align-items: center; justify-content: center;
-            transition: opacity 0.3s;
         }
         .lightbox.active { display: flex; }
         .lightbox-container {
             position: relative; background: #000;
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             border-radius: 6px; overflow: hidden;
-            transition: all 0.3s ease;
         }
-        .lightbox-container iframe {
-            width: 100%; height: 100%; border: none; display: block;
-        }
+        .lightbox-container iframe { width: 100%; height: 100%; border: none; display: block; }
         .lightbox-close {
             position: absolute; top: -40px; right: -10px;
             width: 40px; height: 40px;
             background: #fff; color: #000;
             border: 1px solid #000; border-radius: 50%;
-            font-size: 1.5rem; line-height: 1;
-            cursor: pointer; transition: 0.2s;
+            font-size: 1.5rem; line-height: 1; cursor: pointer;
             display: flex; align-items: center; justify-content: center;
         }
         .lightbox-close:hover { background: #000; color: #fff; border-color: #fff; }
 
-        @media (max-width: 600px) {
-            body { font-size: 16px; }
-            .video-grid { grid-template-columns: repeat(2, 1fr); }
-            .lightbox-container { width: 96% !important; }
+        footer {
+            margin-top: 4rem; padding-top: 2rem;
+            border-top: 1px solid #000;
+            text-align: center; font-size: 0.9rem; font-weight: 300;
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="logo">MF.</a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="education.html">Education</a></li>
-            <li><a href="expertise.html">Expertise</a></li>
-            <li><a href="experience.html">Work</a></li>
-            <li><a href="portfolio.html" class="active">Videos</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+    <div class="page-wrap">
+        <nav>
+            <a href="index.html" class="logo">MF.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="expertise.html">Expertise</a></li>
+                <li><a href="experience.html">Work</a></li>
+                <li><a href="portfolio.html" class="active">Videos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
 
-    <h2>All My Work</h2>
-    <p>A complete look at the video work I've produced — scroll and watch.</p>
-
-    <div class="video-grid" id="videoGrid"></div>
-
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-container" id="lightboxContainer">
-            <button class="lightbox-close" id="closeLightbox">&times;</button>
-            <iframe id="lightboxIframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        <div class="page-header">
+            <h2>All My Work</h2>
+            <p style="color:#555;">A complete look at the video work I've produced — scroll and watch.</p>
         </div>
-    </div>
 
-    <footer>
-        Presented by: Muhammad Faisal Khan | Phone: +92-309-9225353 | Email: faisymyk@gmail.com
-    </footer>
+        <div class="video-grid" id="videoGrid"></div>
+
+        <!-- Lightbox (same adaptive logic) -->
+        <div class="lightbox" id="lightbox">
+            <div class="lightbox-container" id="lightboxContainer">
+                <button class="lightbox-close" id="closeLightbox">&times;</button>
+                <iframe id="lightboxIframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <footer>
+            Presented by: Muhammad Faisal Khan | Phone: +92-309-9225353 | Email: faisymyk@gmail.com
+        </footer>
+    </div>
 
     <script>
         const videos = [
-            { title:"Eureka Digital Marketing Academy", fileId:"1zM4GOplNVjwrjTiL1pjJJgOqRTJAqAgu", thumb:"images/thumb-eureka-academy.jpg", spec:false, aspect:"16:9" },
+            { title:"Eureka Academy", fileId:"1zM4GOplNVjwrjTiL1pjJJgOqRTJAqAgu", thumb:"images/thumb-eureka-academy.jpg", spec:false, aspect:"16:9" },
             { title:"UCG Boutique", fileId:"1XsmHja0G9M9LBOtP04QVS_QGQ1FUDe14", thumb:"images/thumb-ucg.jpg", spec:false, aspect:"9:16" },
-            { title:"Eureka Mug (USA)", fileId:"1snnyZPGiIItJXpftikmZb4Fodq-iV3m_", thumb:"images/thumb-eureka-mug.jpg", spec:false, aspect:"9:16" },
-            { title:"Pediasure (spec ad)", fileId:"1FL9r0bDm_ucVvpAEPTzpnP5_E3aPMStU", thumb:"images/thumb-pediasure.jpg", spec:true, aspect:"16:9" },
-            { title:"Vaseline (spec ad)", fileId:"1HpPwQMP4RrerBCDMLMA_0_SVhhs_oCb0", thumb:"images/thumb-vaseline.jpg", spec:true, aspect:"16:9" }
+            { title:"Eureka Mug", fileId:"1snnyZPGiIItJXpftikmZb4Fodq-iV3m_", thumb:"images/thumb-eureka-mug.jpg", spec:false, aspect:"9:16" },
+            { title:"Pediasure", fileId:"1FL9r0bDm_ucVvpAEPTzpnP5_E3aPMStU", thumb:"images/thumb-pediasure.jpg", spec:true, aspect:"16:9" },
+            { title:"Vaseline", fileId:"1HpPwQMP4RrerBCDMLMA_0_SVhhs_oCb0", thumb:"images/thumb-vaseline.jpg", spec:true, aspect:"16:9" }
         ];
 
         const grid = document.getElementById('videoGrid');
@@ -157,26 +186,26 @@
         function createCard(video) {
             const card = document.createElement('div');
             card.className = 'video-card';
-            // Set card aspect ratio to match video
-            card.style.aspectRatio = video.aspect === "16:9" ? "16 / 9" : "9 / 16";
 
             const img = document.createElement('img');
             img.src = video.thumb;
             img.alt = video.title;
             img.loading = 'lazy';
-            img.onerror = function() {
-                this.style.display = 'none';
-                const fb = document.createElement('div');
-                fb.className = 'fallback-play';
-                fb.innerHTML = '▶';
-                card.prepend(fb);
-            };
+
+            const overlay = document.createElement('div');
+            overlay.className = 'play-overlay';
+            const playIcon = document.createElement('div');
+            playIcon.className = 'play-icon';
+            overlay.appendChild(playIcon);
+
             card.appendChild(img);
+            card.appendChild(overlay);
+
             card.addEventListener('click', () => openLightbox(video.fileId, video.aspect));
 
             const titleEl = document.createElement('p');
             titleEl.className = 'card-title';
-            titleEl.textContent = video.title + (video.spec ? ' (unpaid concept)' : '');
+            titleEl.textContent = video.title + (video.spec ? ' (spec)' : '');
 
             const wrapper = document.createElement('div');
             wrapper.appendChild(card);
@@ -203,9 +232,7 @@
             lightboxIframe.src = '';
         }
         closeBtn.addEventListener('click', closeLightboxFn);
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightboxFn();
-        });
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightboxFn(); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightboxFn(); });
 
         videos.forEach(v => grid.appendChild(createCard(v)));
