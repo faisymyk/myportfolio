@@ -1,271 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Video Creator — Portfolio | Karachi, Pakistan</title>
-    <style>
-        :root {
-            --bg: #fafaf8;
-            --surface: #ffffff;
-            --surface-alt: #f4f3ef;
-            --text: #1c1c1e;
-            --text-secondary: #5c5c5e;
-            --text-muted: #8e8e93;
-            --accent: #b88a3c;
-            --accent-subtle: #f5ecd7;
-            --verified: #2d6a4f;
-            --verified-bg: #edf7f1;
-            --spec-badge: #8b6914;
-            --spec-bg: #fef9ee;
-            --spec-section-bg: #f7f5f0;
-            --border: #e5e3dc;
-            --border-light: #efede8;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.04);
-            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.07), 0 4px 12px rgba(0, 0, 0, 0.04);
-            --radius-sm: 8px;
-            --radius: 12px;
-            --radius-lg: 16px;
-            --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-            --font-mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
-            --max-width: 1100px;
-            --transition: 0.2s ease;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-        body {
-            font-family: var(--font-sans);
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            letter-spacing: -0.01em;
-        }
-        .nav {
-            position: sticky; top: 0; z-index: 100;
-            background: rgba(250, 250, 248, 0.85);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-light);
-            padding: 0 24px;
-        }
-        .nav-inner {
-            max-width: var(--max-width); margin: 0 auto;
-            display: flex; align-items: center; justify-content: space-between;
-            height: 56px;
-        }
-        .nav-brand { font-weight: 700; font-size: 1.05rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
-        .nav-brand span { color: var(--accent); }
-        .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; transition: color var(--transition); }
-        .nav-links a:hover { color: var(--text); }
-        .nav-cta { background: var(--text); color: #fff !important; padding: 8px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; transition: background var(--transition), transform var(--transition); }
-        .nav-cta:hover { background: #333; transform: translateY(-1px); }
-        .hero { padding: 72px 24px 64px; text-align: center; max-width: 720px; margin: 0 auto; }
-        .hero-badge { display: inline-block; background: var(--accent-subtle); color: var(--accent); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 24px; }
-        .hero h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 750; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 16px; }
-        .hero h1 span { color: var(--accent); }
-        .hero-location { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500; }
-        .hero-tagline { font-size: 1.1rem; color: var(--text-secondary); max-width: 520px; margin: 0 auto 32px; }
-        .hero-divider { width: 48px; height: 3px; background: var(--accent); border-radius: 2px; margin: 0 auto 32px; }
-        .section { padding: 64px 24px; }
-        .section-alt { background: var(--spec-section-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-        .section-inner { max-width: var(--max-width); margin: 0 auto; }
-        .section-header { margin-bottom: 48px; }
-        .section-number { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; }
-        .section-title { font-size: clamp(1.5rem, 3vw, 1.9rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
-        .section-subtitle { font-size: 0.95rem; color: var(--text-secondary); max-width: 560px; line-height: 1.5; }
-        .section-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.03em; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px; }
-        .badge-verified { background: var(--verified-bg); color: var(--verified); }
-        .badge-spec { background: var(--spec-bg); color: var(--spec-badge); }
-        .badge-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
-        .badge-dot-verified { background: var(--verified); }
-        .badge-dot-spec { background: var(--spec-badge); }
-        .disclaimer-banner { background: #fefdf8; border: 1px solid #e8dbb8; border-radius: var(--radius); padding: 16px 20px; margin-bottom: 36px; display: flex; align-items: flex-start; gap: 12px; font-size: 0.88rem; color: #6b5e3a; }
-        .disclaimer-icon { flex-shrink: 0; font-size: 1.2rem; margin-top: 1px; }
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; }
-        .portfolio-card { background: var(--surface); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); transition: box-shadow var(--transition), transform var(--transition); }
-        .portfolio-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
-        .card-video-wrap { position: relative; width: 100%; aspect-ratio: 16/9; background: #1a1a1a; overflow: hidden; }
-        .card-video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .card-body { padding: 20px 22px 22px; }
-        .card-client { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
-        .card-project { font-size: 1.1rem; font-weight: 650; letter-spacing: -0.015em; color: var(--text); margin-bottom: 4px; }
-        .card-meta { font-size: 0.85rem; color: var(--text-muted); }
-        .card-badge-row { display: flex; gap: 8px; margin-top: 10px; }
-        .card-tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.03em; padding: 3px 10px; border-radius: 12px; }
-        .tag-verified { background: var(--verified-bg); color: var(--verified); }
-        .tag-spec { background: var(--spec-bg); color: var(--spec-badge); }
-        .client-text-card { background: var(--surface); border-radius: var(--radius-lg); border: 1px dashed var(--border); padding: 32px 24px; display: flex; align-items: center; gap: 16px; box-shadow: var(--shadow-sm); }
-        .client-text-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--accent-subtle); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; color: var(--accent); }
-        .client-text-info .client-name { font-weight: 650; font-size: 1rem; letter-spacing: -0.01em; }
-        .client-text-info .client-note { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-        .contact-card { background: var(--surface); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 24px; text-align: center; box-shadow: var(--shadow-sm); transition: box-shadow var(--transition); }
-        .contact-card:hover { box-shadow: var(--shadow-md); }
-        .contact-icon { font-size: 1.6rem; margin-bottom: 10px; }
-        .contact-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
-        .contact-value { font-size: 1rem; font-weight: 600; color: var(--text); word-break: break-all; }
-        .contact-value a { color: var(--text); text-decoration: none; transition: color var(--transition); }
-        .contact-value a:hover { color: var(--accent); }
-        .footer { text-align: center; padding: 32px 24px; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border-light); }
-        @media (max-width: 768px) {
-            .nav-links { gap: 16px; }
-            .portfolio-grid { grid-template-columns: 1fr; }
-            .contact-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Portfolio | Muhammad Faisal Khan</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,700;1,700&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta property="og:title" content="Muhammad Faisal Khan - AI Video Creator Portfolio">
+  <meta property="og:description" content="AI Advertisement Video Creator specializing in research, scriptwriting, AI video generation, and editing.">
+  <meta property="og:image" content="https://faisymyk.github.io/myportfolio/images/profile.jpg">
+  <meta property="og:url" content="https://faisymyk.github.io/myportfolio/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
 </head>
 <body>
-    <nav class="nav">
-        <div class="nav-inner">
-            <a href="#" class="nav-brand">AI<span>Video</span>Creator</a>
-            <ul class="nav-links">
-                <li><a href="#verified">Client Work</a></li>
-                <li><a href="#spec">Practice</a></li>
-                <li><a href="#contact" class="nav-cta">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <div class="hero-badge">Freelance Portfolio</div>
-        <h1>AI-Powered <span>Advertisement</span> Video Creator</h1>
-        <p class="hero-location">Based in Karachi, Pakistan</p>
-        <p class="hero-tagline">Crafting compelling AI-driven ad videos for brands, academies, and e-commerce businesses.</p>
-        <div class="hero-divider"></div>
-    </header>
-
-    <!-- Verified Client Work -->
-    <section class="section" id="verified">
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-number">Section 01</div>
-                <div class="section-badge badge-verified"><span class="badge-dot badge-dot-verified"></span> Verified Client Projects</div>
-                <h2 class="section-title">Real Client Work</h2>
-                <p class="section-subtitle">These are actual paid projects delivered for clients. Each video was created using AI-powered workflows.</p>
-            </div>
-            <div class="portfolio-grid">
-                <!-- Eureka Academy -->
-                <div class="portfolio-card">
-                    <div class="card-video-wrap">
-                        <iframe src="https://drive.google.com/file/d/1zM4GOplNVjwrjTiL1pjJJgOqRTJAqAgu/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Eureka - Digital Marketing Academy"></iframe>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-client">Digital Marketing Academy</div>
-                        <div class="card-project">Eureka</div>
-                        <div class="card-meta">AI-generated advertisement video</div>
-                        <div class="card-badge-row"><span class="card-tag tag-verified">✓ Verified Client</span></div>
-                    </div>
-                </div>
-                <!-- UCG Boutique -->
-                <div class="portfolio-card">
-                    <div class="card-video-wrap">
-                        <iframe src="https://drive.google.com/file/d/1XsmHja0G9M9LBOtP04QVS_QGQ1FUDe14/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="UCG Boutique"></iframe>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-client">Fashion Retail</div>
-                        <div class="card-project">UCG Boutique</div>
-                        <div class="card-meta">AI-generated advertisement video</div>
-                        <div class="card-badge-row"><span class="card-tag tag-verified">✓ Verified Client</span></div>
-                    </div>
-                </div>
-                <!-- Eureka Mug -->
-                <div class="portfolio-card">
-                    <div class="card-video-wrap">
-                        <iframe src="https://drive.google.com/file/d/1snnyZPGiIItJXpftikmZb4Fodq-iV3m_/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Eureka Mug"></iframe>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-client">US-Based Product Brand</div>
-                        <div class="card-project">Eureka Mug</div>
-                        <div class="card-meta">Smart temperature-controlled mug — AI advertisement</div>
-                        <div class="card-badge-row"><span class="card-tag tag-verified">✓ Verified Client</span></div>
-                    </div>
-                </div>
-                <!-- Munazza Khan (text only) -->
-                <div class="client-text-card">
-                    <div class="client-text-icon">📋</div>
-                    <div class="client-text-info">
-                        <div class="card-client" style="margin-bottom:2px;">Verified Client</div>
-                        <div class="client-name">Journey with Munazza Khan</div>
-                        <div class="client-note">Client project — video not included in this portfolio batch</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Practice / Spec Work -->
-    <section class="section section-alt" id="spec">
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-number">Section 02</div>
-                <div class="section-badge badge-spec"><span class="badge-dot badge-dot-spec"></span> Practice / Spec Ad Work</div>
-                <h2 class="section-title">Speculative &amp; Practice Work</h2>
-                <p class="section-subtitle">These are self-initiated practice projects and speculative ad concepts. They are <strong>not</strong> paid client engagements.</p>
-            </div>
-            <div class="disclaimer-banner">
-                <span class="disclaimer-icon">⚠️</span>
-                <span><strong>Important:</strong> The work below is <strong>practice / spec ad work</strong> created for portfolio demonstration purposes. These were not commissioned or paid for by the brands shown.</span>
-            </div>
-            <div class="portfolio-grid">
-                <!-- Pediasure -->
-                <div class="portfolio-card">
-                    <div class="card-video-wrap">
-                        <iframe src="https://drive.google.com/file/d/1FL9r0bDm_ucVvpAEPTzpnP5_E3aPMStU/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Pediasure - Spec Ad"></iframe>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-client">Speculative Ad Concept</div>
-                        <div class="card-project">Pediasure</div>
-                        <div class="card-meta">Practice AI advertisement — not a paid client project</div>
-                        <div class="card-badge-row"><span class="card-tag tag-spec">⚠ Spec Work</span></div>
-                    </div>
-                </div>
-                <!-- Vaseline -->
-                <div class="portfolio-card">
-                    <div class="card-video-wrap">
-                        <iframe src="https://drive.google.com/file/d/1HpPwQMP4RrerBCDMLMA_0_SVhhs_oCb0/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Vaseline - Spec Ad"></iframe>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-client">Speculative Ad Concept</div>
-                        <div class="card-project">Vaseline</div>
-                        <div class="card-meta">Practice AI advertisement — not a paid client project</div>
-                        <div class="card-badge-row"><span class="card-tag tag-spec">⚠ Spec Work</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section" id="contact">
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-number">Section 03</div>
-                <h2 class="section-title">Get in Touch</h2>
-                <p class="section-subtitle">Available for freelance AI video advertisement projects. Reach out to discuss your brand's next video campaign.</p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="contact-icon">📧</div>
-                    <div class="contact-label">Email</div>
-                    <div class="contact-value"><a href="mailto:faisymyk@gmail.com">faisymyk@gmail.com</a></div>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">📱</div>
-                    <div class="contact-label">Phone / WhatsApp</div>
-                    <div class="contact-value"><a href="tel:+923099225353">+92-309-9225353</a></div>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">📍</div>
-                    <div class="contact-label">Location</div>
-                    <div class="contact-value">Karachi, Pakistan</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        &copy; 2026 — AI Video Creator Portfolio. Karachi, Pakistan.
-    </footer>
+  <nav>
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="education.html">Education</a>
+    <a href="skills.html">Skills</a>
+    <a href="work.html">Work</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <main>
+    <h1>Creative Portfolio</h1>
+    <p style="font-size: 1.5rem; font-weight: 400; margin-bottom: 2rem;">Presented by: Muhammad Faisal Khan</p>
+    <div style="margin: 3rem 0; padding: 2rem; background: #f0f0f0; border: 2px solid #000;">
+      <p style="font-size: 1.2rem; margin: 0;"><strong>Phone:</strong> +92-309-9225353</p>
+      <p style="font-size: 1.2rem; margin: 0;"><strong>Email:</strong> faisymyk@gmail.com</p>
+    </div>
+    <p style="font-size: 1.2rem; max-width: 700px;">AI-powered advertisement videos · Social media content · Brand campaigns · Research & scriptwriting · Post-production.</p>
+  </main>
+  <footer>
+    <p>© 2024 Muhammad Faisal Khan — <a href="mailto:faisymyk@gmail.com">faisymyk@gmail.com</a></p>
+  </footer>
 </body>
 </html>
